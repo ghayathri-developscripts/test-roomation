@@ -1,0 +1,10 @@
+= semantic_nested_form_for [:admin, discount] do |f|
+  = f.inputs do
+    = f.input :package, prompt: "All"
+    = f.input :name
+    = f.input :discount_type, as: :select, collection: Discount::TYPES_COLLECTION, include_blank: false
+    = f.input :amount
+    = f.input :code
+    = f.input :start_date
+    = f.input :expiration_date
+  = f.actions

@@ -1,0 +1,71 @@
+%div{:id => "step8"}
+.box
+  %p
+    Review the quick summary and choose your method of payment.
+
+.divider
+  %hr
+
+.box.top-20#checkout
+  #summary
+    %h1 Quick summary
+    #details
+      %strong 
+        "
+        = @project.package.title 
+        " level.
+      = simple_format @project.package.benefits
+      =link_to 'Edit', '#', :class => "b-orange-button project_custom_step_link", "data-step" => "level_of_guidance"
+    #total
+      Total: $278.00
+    = render "paypal_button", :design_plan  => @project.package.code
+    .top-20
+    = render "moneyback"
+  #billing-info.top-20
+    %h1 Billing Info
+    #form-upper
+      .header Credit card information
+      %br
+      %label{:for => 'type'} Type of card:
+      %select{:name => 'type'}
+        %option{:selected => true} select card type
+        %option Visa Electron
+      %label{:for => 'name'} Name on a card:
+      %input{:type => 'text', :name => 'name'}
+      %label{:for => 'name'} Credit card number:
+      %input{:type => 'text', :name => 'name'}
+      %label{:for => 'name'} Verification code:
+      %input{:type => 'text', :name => 'name'}
+      %br
+      %label{:for => 'name'} Expiration date:
+      %select.date
+        %option 04
+      %select.date
+        %option 2012
+
+    #form-footer
+      .header Billing address
+      %br
+      %label{:for => 'name'} Street address 1:
+      %input{:type => 'text', :name => 'name'}
+      %label{:for => 'name'} Street address 2:
+      %input{:type => 'text', :name => 'name'}
+      %label{:for => 'name'} City: 
+      %input{:type => 'text', :name => 'name'}
+      %br
+      %label{:for => 'name'} State:
+      %select.date
+        %option CA
+      %br
+      %label{:for => 'name'} Zip code:
+      %input.zipcode{:type => 'text', :name => 'name'}
+      %br
+      %label{:for => 'name'} Phone number:
+      %input.phone{:type => 'text', :name => 'name'}
+      %input.phone-2{:type => 'text'}
+      #place-order
+        =link_to 'Place order', '#', :class => "b-orange-button project_forward_link"
+
+.divider.top-40
+
+

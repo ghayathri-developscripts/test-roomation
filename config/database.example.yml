@@ -1,0 +1,23 @@
+development: &defaults
+  database: roomations_development
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: 
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  host: localhost
+  database: roomations_production
+  username: roomations
+  password: roomationsdatabase747
+
+
+test: &test
+  <<: *defaults
+  database: roomations_test
+  min_messages: WARNING

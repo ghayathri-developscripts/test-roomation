@@ -1,0 +1,48 @@
+.l-how-it-works
+  %hr.top
+  %h1 How it works?
+
+  %ul.l-steps.clearfix
+    %li
+      .b-step-wrap
+        .b-step-number.left
+          1
+        .b-step-description.first.left
+          %h5.subtitle Find your style
+          = image_tag asset_path('homepage/interior-preview-1.png'), :class => 'interior-preview'
+          .b-learn-more
+            = link_to 'Learn more', how_it_works_path
+    %li
+      .b-step-wrap.shift-2
+        .b-step-number.left
+          2
+        .b-step-description.left
+          %h5.subtitle Review your style board
+          = image_tag asset_path('homepage/interior-preview-2.png'), :class => 'interior-preview'
+          .b-learn-more
+            = link_to 'Learn more', how_it_works_path
+    %li
+      .b-step-wrap.shift-2
+        .b-step-number.left
+          3
+        .b-step-description.last.left
+          %h5.subtitle Get your final vision and shopping list
+          = image_tag asset_path('homepage/interior-preview-3.png'), :class => 'interior-preview'
+          .b-learn-more
+            = link_to 'Learn more', how_it_works_path
+
+  .popovers
+    .section
+      = image_tag asset_path('homepage/furniture-1-sofa.png'), :class => 'preview'
+      = image_tag asset_path('homepage/furniture-2-chair.png'), :class => 'preview'
+      = image_tag asset_path('homepage/furniture-3-chest-of-drawers.png'), :class => 'preview'
+      = image_tag asset_path('homepage/furniture-4-arm-chair.png'), :class => 'preview'
+    .section
+      = image_tag asset_path('homepage/furniture-5-sofa.png'), :class => 'preview'
+      = image_tag asset_path('homepage/furniture-6-clock.png'), :class => 'preview'
+      = image_tag asset_path('homepage/furniture-7-lampshade.png'), :class => 'preview'
+      = image_tag asset_path('homepage/furniture-8-arm-chair.png'), :class => 'preview'
+    .section
+      = image_tag asset_path('homepage/furniture-9-shelf.png'), :class => 'preview'
+      = image_tag asset_path('homepage/furniture-10-table.png'), :class => 'preview'
+      = link_to 'Get Started', new_design_request_path, :class => "b-orange-button b-start-project-button"

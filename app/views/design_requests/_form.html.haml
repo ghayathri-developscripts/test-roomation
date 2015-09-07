@@ -1,0 +1,3 @@
+= render :layout  => 'common_layout' do
+  = simple_form_for @design_request, :url => wizard_path, :method  => :put , :html => {:multipart => true} do |f|
+    = yield f

@@ -1,0 +1,117 @@
+#design-answers
+  %h3 Common info
+  %table
+    %col(width="150")
+    %tr
+      %td
+        ID
+      %td
+        = design_request.id
+    %tr
+      %td
+        Customer
+      %td
+        = design_request.customer.present? ? (link_to design_request.customer.full_name, admin_customer_path(design_request.customer.id)) : '-'
+    %tr
+      %td
+        Current Step
+      %td
+        = design_request.step
+    %tr
+      %td
+        Created at
+      %td
+        = design_request.created_at
+    %tr
+      %td
+        Updated at
+      %td
+        = design_request.updated_at
+  -if design_request.transaction
+    %h3 Transaction Info
+    %table
+      %col(width="150")
+        %tr
+          %td
+            = "Transaction ID:"
+          %td
+            = design_request.transaction.transaction_id
+        %tr
+          %td
+            = "Amount:"
+          %td
+            = design_request.transaction.amount
+        %tr
+          %td
+            = "Customer Email:"
+          %td
+            - user = User.find_by_email(design_request.transaction.customer_email)
+            - if user and user.is_role? :user
+              = link_to design_request.transaction.customer_email, admin_customer_path(user.id)
+            - else
+              = design_request.transaction.customer_email
+        %tr
+          %td
+            = "Credit Card Number:"
+          %td
+            = design_request.transaction.credit_masked_number
+        %tr
+          %td
+            = "Credit Card Type:"
+          %td
+            = design_request.transaction.credit_card_type
+  %h3 About request
+  %table
+    %col(width="150")
+    %tr
+      %td
+        Package
+      %td
+        = design_request.package.present? ? design_request.package.title : '-'
+    %tr
+      %td
+        Designers:
+      %td
+        - design_request.designers.each_with_index do |designer, index|
+          %tr
+            %td
+            %td
+              = link_to "#{index + 1}) #{designer.full_name} (#{designer.email})", admin_designer_path(designer) 
+    %tr
+      %td
+        Life phase
+      %td
+        = design_request.life_phase.present? ? design_request.life_phase.title : '-'
+    %tr
+      %td
+        Project Approach
+      %td
+        = design_request.project_approach.present? ? design_request.project_approach.title : '-'
+    %tr
+      %td
+        Budget explanation
+      %td
+        = design_request.budget_explanation
+    %tr
+      %td
+        Budget type
+      %td
+        = design_request.budget_type.present? ? design_request.budget_type.title : '-'
+    %tr
+      %td
+        Wishes
+      %td
+        = design_request.other_wishes
+  - if design_request.style_poll.present? and design_request.style_poll.style_quiz_result.present? and design_request.style_poll.color_quiz_result.present?
+    %h3 Style assesment
+    .style-assesment-container
+      = render partial: 'style_polls/quiz_result', locals: { style_poll: design_request.style_poll }
+  - else
+    %div
+      Not completed yet
+  %h3 Room Info
+  - if design_request.room.present?
+    = render 'room', :room => design_request.room
+  - else
+    %div 
+      Not provided

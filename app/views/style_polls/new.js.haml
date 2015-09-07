@@ -1,0 +1,6 @@
+$("#quizModal").spin(false);  
+$("#quizModal").find('.modal-body').html("#{escape_javascript(render 'form')}");
+$("#quizModal").addClass('quiz');
+
+document.title = "Take our quick Style Quiz" ;
+_gaq.push(['_trackPageview']);

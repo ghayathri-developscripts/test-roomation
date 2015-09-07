@@ -1,0 +1,26 @@
+= render :layout  => 'form' do |f|
+  - if @value.eql?("Design Advice")
+    %div{:id => "step4"}
+    %hr
+    %p Please enter your design question below.Include website links if needed (optional).
+    %p{:style => "font-weight: bold;"} Enter Maximum 250 characters
+    = hidden_field_tag 'package_id','',:value=>@value
+    =f.simple_fields_for :room do |room|
+      = room.text_area :title,label: false, rows: "4", maxlength: "250",style: "width:470px;", placeholder: "ex. Should I choose a sectional or a couch in this room? I need an artwork recommendation, I need a paint color recommendation, what kind of fabrics work well with kids (or pets), etc." 
+      = render partial: 'design_requests/result_value_poll', locals: { room:room }
+  - else
+    %div{:id => "step3"}
+    .box
+      %p In this section we will assess your style preferences by asking you series of questions.
+  
+    .divider
+    %hr
+  
+    .style-assesment-container
+      #completeMessage{ class: ('hide' if (@design_request.style_poll.nil? or !@design_request.style_poll.valid?)) }
+        %h1.step-title
+          Your style is:
+        = render partial: 'style_polls/quiz_result', locals: { style_poll: @design_request.style_poll }
+    = link_to "Retake Style Quiz", retake_quiz_design_request_path(@design_request), class: "b-orange-button project_custom_step_link"
+      
+    .divider.top-20

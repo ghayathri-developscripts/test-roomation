@@ -1,0 +1,9 @@
+- if item.present?
+  .item
+    = image_tag item.photo.url
+    %div
+      = item.title
+    %div
+      = item.description if item.description.present?
+- else
+  = '-'

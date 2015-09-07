@@ -1,0 +1,17 @@
+#actions-bar
+  #backward.side-button
+    - unless @step.eql?(:level_of_guidance)
+      - path = @step.eql?(:checkout) ? wizard_path(:choose_designer) : (@step.eql?(:style_assessment_results) ? wizard_path(:level_of_guidance) : previous_wizard_path)
+      = link_to path, {:class => 'project_backward_link'} do
+        %span.arrow
+        %span.text Previous step
+  #save
+    = link_to 'Save to continue later', '#save_and_continue', 'data-toggle' => 'modal'
+  #forward.side-button
+    - unless @step.eql?(:checkout)
+      = link_to next_wizard_path, :class => 'project_forward_link' do
+        %span.text Next step
+        %span.arrow
+    - else
+      = link_to wizard_path, :method => :put do
+        %span.text Finish

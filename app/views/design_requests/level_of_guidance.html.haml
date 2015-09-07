@@ -1,0 +1,106 @@
+= render :layout  => 'form' do |f|
+  %div{:id => "step1"}
+  .row-fluid.mailustxt.padboth2
+    Prices below are per room. If you're looking for a custom plan or more than one room,
+    %a.etxt{:href => "http://www.jotform.us/roomations/design_quote"} email us.
+  .row-fluid.padboth4.choosplanht
+    #free_plan{:class => "span4 pbox #{get_request_package(@design_request) == "free" ? 'pboxact' : ''}"}
+      .boxtit.planbutact.boxtitactpad
+        Tell
+        %span me
+      .titbar.titbaract &nbsp;
+      #free_plan_content{:style => get_request_package(@design_request) == "free" ?  'display: none;' : ''}
+        .pad15.starting_price &nbsp;
+        .boxtit2.orgtxt FREE
+        .pad15
+          .small_bar
+          .span12.bar2.bar2act
+        .padboth2.pad15.pboxht
+          %ul.blist.blist2
+            %li Get the answer to that one burning interior design question that you just can't solve
+        .padboth1{:style => "text-align:center;"}
+          %a#free_plan.btn.btn-gray.planbut.planbutact{"data-plan-name" => "free_plan", :href => "javascript:void(0)"} CHOOSE THIS PLAN
+      #free_me_div{:style => get_request_package(@design_request) == "free" ?  '' : 'display: none;'}
+        .pad15.starting_price Select your brands :
+        .padboth1.pad15.pboxht.new_tabel.pabot
+          %table{:cellspacing => 1}
+            %tr
+              = render 'package', :package  => select_package_by_code('design-advice'), :f  => f
+        .pad15 * Receive a unique style board from a different designer with each additional board.
+    
+    #guide_me{:class => "span4 pbox #{get_request_package(@design_request) == "guide" ? 'pboxact' : ''}"}
+      .boxtit.planbutact.boxtitactpad
+        Guide
+        %span me
+      .titbar.titbaract &nbsp;
+      #guide_me_content{:style => get_request_package(@design_request) == "guide" ?  'display: none;' : ''}
+        .pad15.starting_price Starting at
+        .boxtit2.padtop.orgtxt $250
+        .pad15
+          .small_bar
+          .span12.bar2.bar2act
+        .padboth2.pad15.pboxht
+          %ul.blist.blist2
+            %li Ask unlimited questions
+            %li You choose your designers
+            %li Get up to 3 unique style boards for your room
+            %li Design satisfaction guarantee
+            %li Shop for products from your style board
+        .padboth1{:style => "text-align:center;"}
+          %a#guide_me_plan.btn.btn-gray.planbut.planbutact{"data-plan-name" => "guide_me", :href => "javascript:void(0)"} CHOOSE THIS PLAN
+      #guide_me_div{:style => get_request_package(@design_request) == "guide" ? '' : 'display: none;'}
+        .pad15.starting_price Select your brands :
+        .padboth1.pad15.pboxht.new_tabel.pabot
+          %table{:cellspacing => 1}
+            %tr
+              = render 'package', :package  => select_package_by_code('one-board'), :f  => f
+            %tr
+              = render 'package', :package  => select_package_by_code('two-boards'), :f  => f
+            %tr
+              = render 'package', :package  => select_package_by_code('three-boards'), :f  => f
+        .pad15 * Receive a unique style board from a different designer with each additional board.
+
+    #show_me{:class => "span4 pbox #{get_request_package(@design_request) == "show" || @design_request.package.nil?  ? 'pboxact' : ''}"}
+      .boxtit.planbutact.boxtitactpad
+        Show
+        %span me
+      .titbar.titbaract &nbsp;
+      #show_me_content{:style => get_request_package(@design_request) == "show" ? 'display: none;' : ''}
+        .pad15.starting_price Starting at
+        .boxtit2.padtop.orgtxt $400
+        .pad15
+          .small_bar
+          .span12.bar2.bar2act
+        .padboth2.pad15.pboxht
+          %ul.blist.blist2
+            %li Ask unlimited questions
+            %li You choose your designers
+            %li Get up to 3 unique style boards for your room
+            %li Design satisfaction guarantee
+            %li Select elements you like from each board
+            %li See your room design i 3D before shopping
+            %li Printable Shopping List
+            %li Optional concierge shopping with exclusive retailer discounts
+        .padboth1{:style => "text-align:center;"}
+          %a#show_me_plan.btn.btn-gray.planbut.planbutact{"data-plan-name" => "show_me", :href => "javascript:void(0)"} CHOOSE THIS PLAN
+      #show_me_div{:style => get_request_package(@design_request) == "show" ?  '' : 'display: none;'}
+        .pad15.starting_price Select your brands :
+        .padboth1.pad15.pboxht.new_tabel.pabot
+          %table{:cellspacing => 1, :style => "width:410px;"}
+            %tr
+              = render 'package', :package  => select_package_by_code('one-design'), :f  => f
+            %tr
+              = render 'package', :package  => select_package_by_code('two-designs'), :f  => f
+            %tr
+              = render 'package', :package  => select_package_by_code('three-designs'), :f  => f
+        .pad15 * Receive a unique style board from a different designer with each additional board.
+
+  .row-fluid.padboth3
+    .span2
+      %img{:src => "/assets/new_level_guidance/money-back-icon.jpg"}
+    .span10
+      .etxttit.fbold.padboth1 Have anxiety about whether you'll like your design? Your satisfaction is guaranteed!
+      .etxtcont
+        During the design process, you'll get to review style boards from up to 3 different designers (depending on the plan you purchase)
+        to make sure that the design is on the right track, and you can give feedback on things you don't like. You'll also have your own
+        personal project manager, dedicated to making you 100% happy throughout the design process.

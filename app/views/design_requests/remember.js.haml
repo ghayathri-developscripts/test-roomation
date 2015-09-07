@@ -1,0 +1,8 @@
+- if @reveal.errors.messages.any?
+  :plain
+    $('.save-design-errors').removeClass('hide')
+    $('.save-design-errors').html("#{escape_javascript(render 'errors')}")
+- else
+  :plain
+    $('#save_design_submit').css('display','none')
+    $('#save_design_body').html("Your design was successfully saved. Check your email to see how to end it later.")

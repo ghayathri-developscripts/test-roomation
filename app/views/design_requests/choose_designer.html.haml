@@ -1,0 +1,54 @@
+:javascript
+  $(function() {
+    $(".fancybox").fancybox({
+      type: 'image',
+      minHeight: 600,
+      maxHeight: 600,
+      arrows: true,
+      closeBtn: true,
+      nextClick: true,
+      nextEffect: 'fade',
+      prevEffect: 'fade'
+    });
+  });
+
+
+= render :layout  => 'form' do |f|
+  %div{:id => "step6"}
+  .box
+    %p
+      Choose the designer for your room. All of our designers are trained with the most advanced industry software. View their portfolios below and choose your favourite!
+  
+  .divider
+    %hr
+  
+  - @designers.each do |designer|
+    .box.top-20.designer
+      .photo#first-bg
+        - if designer.photo_album.present? && designer.photo_album.main_photo.present?
+          = link_to image_tag("#{designer.photo_album.main_photo.image.thumb}", :style => "padding-top: 0;", alt: "#{designer.full_name}"), "#{designer.photo_album.main_photo.image}", :rel  => "group", :class  => "fancybox", :title  => "#{designer.full_name}"
+      .info
+        %h1.title= designer.full_name
+        .rating
+          %img{:src => '/assets/steps/step4-rating-stars.png'}
+        %p= truncate(designer.description, length: 300, ommision: "...")
+        .folio-photos
+          - if designer.photo_album.present?
+            - designer.photo_album.photos.take(5).each do |photo|
+              = link_to image_tag("#{photo.image.small_thumb}", :style => "padding-top: 0;", alt: "image_#{photo.id}"), "#{photo.image}", :rel  => "group", :class  => "fancybox", :title  => "#{designer.full_name}"
+          .controls
+            %span
+              = link_to 'Full profile', '#', :class => "b-gray-button"
+            - if user_signed_in?
+              %span.choose-designer
+                = f.input :designer_ids, label: false do
+                  = check_box_tag "design_request[designer_ids][]", designer.id, @design_request.designers.include?(designer), { id: "design_request_designer_ids_#{current_user.id}"}
+                  %span Choose this designer
+            - else
+              %span.choose-designer
+                = f.input :designer_ids, label: false do
+                  = check_box_tag "design_request[designer_ids][]", designer.id, @design_request.designers.include?(designer), { id: "design_request_designer_ids_#{designer.id}"}
+                  %span Choose this designer
+    .divider.top-20
+  
+

@@ -1,0 +1,16 @@
+= render :layout  => 'form' do |f|
+  %div{:id => "step2"}
+  .divider
+    %hr
+  .box
+    %p In this section we will assess your style preferences by asking you series of questions.
+  
+  .divider
+  %hr
+  
+  .style-assesment-container
+    #assesment{ class: ('hide' if @design_request.style_poll.valid?) }
+      = render 'style_polls/quiz'
+  
+  .divider.top-20
+  

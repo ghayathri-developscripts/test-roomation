@@ -1,0 +1,29 @@
+%a{:name => "contact-us"}
+%span.free-devise Drop us a line below or give us a ring at (708) 628-ROOM
+%p.small-contact (7666)
+.contact-us-header
+.b-contact-us
+  %form#contact-us-form
+    %fieldset
+      %ul
+        %li
+          .form-column
+            %label First name*
+            %input{:type => "text", :name => 'contact_us[first_name]', "required" => "required"}
+          .form-column
+            %label Last name
+            %input{:type => "text", :name => 'contact_us[last_name]'}
+        %li
+          %label Email address*
+          %input{:type => "text", :name => 'contact_us[email]', "type" => "email", "required" => "required"}
+        %li
+          %label Message*
+          %textarea{:rows => 5, :name => 'contact_us[message]', "required" => "required"}
+        %li
+          .form-column
+            *Required Fields
+          .form-column
+            #action-links
+              %a{:href => "#", :class => 'contact-submit'} Send message
+              = '/'
+              %a{:href => "#", :class => 'contact-reset'} Clear form

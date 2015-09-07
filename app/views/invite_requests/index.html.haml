@@ -1,0 +1,47 @@
+#why-become
+  %hr
+  .right-block
+    %h1.no-pad-top Why become a roomations designer?
+    %p.top-20
+      Homeowners are increasingly looking online for design services. 
+      Roomations helps homeowners find designers by bringing many qualified professionals 
+      together in one place. We attract clients, provide online tools to help assess their 
+      needs and preferences, and make the design process more efficient for designers. 
+      You provide advice, design concept boards and 3D room renderings to clients all over the U.S.
+      
+      
+    .dashed-block
+      .scissors
+      %h3 Request An Invitation To Join The Roomations Designer Network
+      %p.bold
+        Annual Membership Fee of $20 deducted after earnings from your first project.
+      %ul.orange-list
+        %li Create your own designer profile
+        %li Showcase concept boards and renderings you've completed with past clients in an online portfolio
+        %li Get featured on the Roomations blog
+        %li Earn income for StyleBoard and RoomVision services
+        %li Develop new client relationships through the DesignAdvice program
+        %li Access Autodesk professional rendering software from anywhere at no additional cost
+        %li Build your skills with educational resources and forums especially for designers
+    
+      = link_to "Request an Invite", new_invite_request_path , :class => 'b-orange-button b-button'
+      
+      %p
+        You will be asked to submit your resume and portfolio with your request.
+
+    %p.top-20
+      Got questions? Email 
+      = mail_to "katie@roomations.com", nil, :class  => "mail-link"    
+      or fill out our 
+      = link_to 'Contact Us', "#contact-us-form" , :class  => "mail-link"
+      form.
+    = link_to 'View how much you can earn', "#income-opportunities", 'data-toggle' => :modal, :class  => "mail-link"
+
+    .preview.top-40
+      %p.bold See what other designers have done:
+      .preview-img-container
+        - 4.times do |i|
+          = image_tag "gallery/after_f_#{i+1}.png"
+        
+    
+= render 'income_opportunities_modal'

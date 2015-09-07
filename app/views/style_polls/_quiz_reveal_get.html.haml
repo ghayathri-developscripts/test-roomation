@@ -1,0 +1,15 @@
+#quiz-reveal
+  %h1 
+    Start your dream today!
+  
+  .join-prompt
+    To use this function you need to
+    = link_to 'sign up', '#sign-up', :class  => "quiz-show-modal"
+    to your Roomations account or
+    = link_to 'sign in', '#sign-in', :class  => "quiz-show-modal"
+    to continue.
+
+:javascript
+  $(function(){
+    $.style_quiz.initQuizReveal();
+  });

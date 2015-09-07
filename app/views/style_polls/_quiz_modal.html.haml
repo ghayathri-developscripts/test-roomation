@@ -1,0 +1,9 @@
+- if user_signed_in?
+  - if !current_user.is_role?(:admin)
+    - if need_show_style?
+      = render :partial => 'style_polls/quiz_result', :layout  => 'style_polls/quiz_layout', :locals => {:title => "Your style is:", style_poll: current_user.style_poll }
+      - clear_show_style
+    - elsif current_user.is_role?(:user) and current_user.style_poll.nil?
+      = render :partial => 'style_polls/quiz_prompt', :layout  => 'style_polls/quiz_layout', :locals => {:title => "Take our quick Style Quiz"}    
+- elsif session_style_poll_empty?
+  = render :partial => 'style_polls/quiz_prompt', :layout  => 'style_polls/quiz_layout', :locals => {:title => "Take our quick Style Quiz"}

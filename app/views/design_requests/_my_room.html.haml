@@ -1,0 +1,56 @@
+%div{:id => "step4"}
+.box
+  %p 
+    Upload pictures of your room and pictures of anything you have that you'd like to incorporate in your design (if any). <br/>If you're not ready to upload pictures now, simply 
+    %a.orange-underlined-link.project_forward_link{href: '#'} skip this step
+    and we'll send you a reminder later.
+
+.divider
+  %hr
+= f.simple_fields_for :room do |room|
+  .box
+    .bold Which room do you want to design?
+    #input-with-links
+      %span.left
+        = room.input :title, label: false, input_html: { placeholder: "ex. Living room, Office, Master bedroom etc." }
+      %a{href: '#'} Accepted image formats and sizes
+      %br
+      %a{href: '#'} Tips on how to take pictures for the best result
+  = render 'room_albums', room: room
+
+  .box.top-40
+    %h1.orange-title.bold What do you use this room for?
+    %p (ex: family time, office, eating, TV, toy room, etc. Please describe your functional needs like storage, kid-friendly, etc)
+    = room.input :used_for, label: false, input_html: { class: "width-70", rows: 2 }
+
+  .box.top-40.width-70
+    #whd
+    %h1.orange-title.bold What are the dimensions of your room? (ft.)
+    %span
+      = room.input :room_size, label: false, input_html: { class: "width-300px" }
+
+  .box.top-40.width-70
+    #whd-2
+    %h1.orange-title.bold What are the dimensions of any windows in your room? (inches)
+    %span
+      = room.input :windows, label: false, as: :string, input_html: { class: "width-300px" }
+
+  .box.top-40
+    %h1.orange-title.bold Which of the following best describes your budget?
+    .option
+      = f.input :budget_type_id, collection:  BudgetType.all, as:  :radio, label:  false, label_method:  :description, value_method:  :id
+
+  .box.top-40
+    %h1.orange-title.bold Please describe any information about your budget.
+    %p (ex: I'm interested in spending between $3,000 - $5,000; I'm willing to spend extra for sustainable products, but not for designer furniture; I'm hoping to spend about $1500, plus or minus; I don't anticipate spending more than $500.)
+    = f.input :budget_explanation, label: false, input_html: { class: "width-70" }
+
+  .box.top-40
+    %h1.orange-title.bold What phase of life are you in?
+    = f.input :life_phase_id, collection: LifePhase.all, prompt: "Select your life phase", label: false
+
+  .box.top-40
+    %h1.orange-title.bold How do you approach projects?
+    = f.input :project_approach_id, collection: ProjectApproach.all, prompt: "Select project approach", label: false
+
+  .divider.top-40 

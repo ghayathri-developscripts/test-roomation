@@ -1,0 +1,38 @@
+#income-opportunities.modal.fade{:style => 'display: none;'}
+  .modal-header
+    = link_to 'x', nil, :class => 'close', 'data-dismiss' => 'modal'
+    %h1.no-pad-top Income Opportunities
+  .modal-body
+    %p
+      Roomations clients can select up to three designers when starting a new project. 
+      Each designer creates a single StyleBoard which is presented to the client as a design option.  
+      The client will then choose one designer to complete a RoomVision (renderings and shopping list) 
+      based on the preferred StyleBoard. 
+    %p
+      When the project is complete, the client is asked to provide a review of their designer. 
+      Designers receiving outstanding reviews are eligible for bonus pay as described below.
+      
+    %table.three-column-table
+      %tr
+        %th.td35 Deliverable
+        %th.td35 Standard Rate
+        %th.td30 Potential Bonus
+      %tr
+        %td StyleBoardOnly
+        %td $40
+        %td $5
+      %tr
+        %td RoomVision (includes StyleBoard)
+        %td $165
+        %td $25
+      %tr
+        %td Extra Revisions
+        %td $25
+        %td N/A
+        
+    %p.top-20
+      Members of the Roomations Designer Network can further enhance their earning potential by providing 
+      subscribing homeowners with ongoing design advice. To learn more the DesignAdvice program, please contact 
+      = mail_to "katie@roomations.com", nil, :class  => "mail-link"
+  .modal-footer
+    = link_to 'Close', nil, :class => 'btn', 'data-dismiss' => 'modal'

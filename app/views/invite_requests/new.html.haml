@@ -1,0 +1,62 @@
+#designer-invite-request
+  %hr
+  .right-block
+    %h2.section-title.top-20
+      Request an Invite to the Roomations Designer Network.
+
+    - if @invite_request.errors.any?
+      .b-errors-wrap              
+        .b-error.alert.alert-error
+          - @invite_request.errors.full_messages.each do |msg|
+            %div
+              = msg 
+    
+    = simple_form_for(@invite_request, :url => invite_requests_path, :html => {:class => 'request-invite-form', :multipart => true} ) do |f|
+      .info-container.top-20
+        .label-container
+          = label_tag 'Name'
+        = f.input_field :name, :label  => false, :placeholder  => 'name', :class  => "textfield-270px"
+      .info-container.top-10
+        .label-container
+          = label_tag 'email'
+        = f.input_field :email, :label  => false, :placeholder  => 'email', :class  => "textfield-270px"
+
+      %hr
+      
+      .upload_section
+        %p 
+          Upload your portfolio and resume. Once submitted, we will evaluate your work and you will hear back within 5 business days.
+        %p
+          We accept portfolios in the following formats:
+          %br/
+          %strong PDF, PPT, DOC. 
+          or 
+          %strong ZIP 
+          file of the portfolios that consist of multiple files.
+          
+        %div.top-10
+          .invite_request_file
+            - unless @invite_request.portfolio_cache
+              = f.file_field  :portfolio
+            - else
+              = @invite_request.portfolio.filename
+              = link_to 'choose another', "#", :class => "b-gray-button file_deleter", :id => "portfolio"
+            = f.hidden_field :portfolio_cache
+          %p or provide a URL to your web portfolio
+          = f.input_field 'portfolio_web', :label => false, :placeholder => 'portfolio url', :class  => "textfield-270px"
+         
+        %div.top-10
+          .invite_request_file
+            - unless @invite_request.resume_cache
+              = f.file_field :resume
+            - else
+              = @invite_request.resume.filename
+              = link_to 'choose another', "#", :class => "b-gray-button file_deleter", :id => "resume"
+            = f.hidden_field :resume_cache
+          %p or provide a URL to your resume on the web
+          = f.input_field 'resume_web', :label => false, :placeholder => 'resume url', :class  => "textfield-270px"
+       
+        = link_to "Send request", "#", :class => "b-orange-button top-20 submit-request-invite"
+
+:javascript
+  $.helpers.initialize_invite_request()

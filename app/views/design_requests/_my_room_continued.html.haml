@@ -1,0 +1,99 @@
+.box
+  %div{:id => "step5"}
+.divider
+  %hr
+
+= f.simple_fields_for :room, @design_request.room do |room|
+
+  .box.top-40
+    %h1.orange-title.bold For this room, the colors I gravitate towards are:
+    .room_continued_pics
+      - ColorSet.all.each do |item|
+        .img-block
+          .img-info
+            = image_tag item.photo.url
+          .img-info
+            = radio_button_tag "design_request[room_attributes][color_set_id]", item.id, @design_request.room.color_set.eql?(item)
+            %p.bold 
+              = item.title
+            %p
+              = "(ex: #{item.description})"
+  .box.top-20
+    %h1.orange-title.bold What are the colors that you absolutely do not want in this room?
+    = room.input :rejected_colors, :label => false, :input_html => { :class => "width-70" }
+
+  .box.top-20
+    %h1.orange-title.bold The type of wood I would prefer for my furniture and cabinetry:
+    .room_continued_pics
+      - WoodType.all.each do |item|
+        .img-block
+          .img-info
+            = image_tag item.photo.url
+          .img-info
+            = radio_button_tag "design_request[room_attributes][wood_type_id]", item.id, @design_request.room.wood_type.eql?(item)
+            %p.bold 
+              = item.title
+
+  .box.top-20
+    %h1.orange-title.bold What kind of fabrics appeal most to you, considering your lifestyle?
+    .room_continued_pics
+      - Fabric.all.each do |item|
+        .img-block
+          .img-info
+            = image_tag item.photo.url
+          .img-info
+            = radio_button_tag "design_request[room_attributes][fabric_id]", item.id, @design_request.room.fabric.eql?(item)
+            %p.bold 
+              = item.title
+            %p
+              = item.description
+            
+  .box.top-20
+    %h1.orange-title.bold 
+      What type of art would you want in this room?
+      %span.title-description (check all that apply)
+    .room_continued_pics
+      - Art.all.each do |item|
+        .img-block.art
+          .img-info
+            = image_tag item.photo.url
+          .img-info
+            = check_box_tag "design_request[room_attributes][art_ids][]", item.id, @design_request.room.arts.include?(item)
+            %p.bold 
+              = item.title
+
+  .box.top-20
+    %h1.orange-title.bold 
+      The type of materials I would feel comfortable with my furniture:
+      %span.title-description (check all that apply)
+    .room_continued_pics
+      - Furniture.all.each do |item|
+        .img-block.material
+          .img-info110
+            = image_tag item.photo.url, :class  => "img"
+          .img-info
+            = check_box_tag "design_request[room_attributes][furniture_ids][]", item.id, @design_request.room.furnitures.include?(item)
+            %p.bold 
+              = item.title
+
+  .box.top-20.clearfix
+    %h1.orange-title.bold 
+      Please select the stores where you typically shop:
+      %span.title-description (check all that apply)
+    - shops = [Shop.all, nil].flatten
+    - shops.in_groups(2, false) do |group|
+      .column
+        - group.each do |shop|
+          .shop-input
+            - if shop.nil?
+              Other
+              = room.text_field :custom_shops
+            - else
+              = check_box_tag "design_request[room_attributes][shop_ids][]", shop.id, @design_request.room.shops.include?(shop)
+              %span= shop.title
+
+  .box.top-20
+    %h1.orange-title.bold Is there anything else you'd like your designer to consider?
+    = f.input :other_wishes, :label => false, :input_html => { :class => "width-95", :rows  => "3", :style  => "resize:none;"}
+  
+  .divider.top-40 

@@ -1,0 +1,109 @@
+#customer-profile
+  %hr
+  .right-block
+    %h1.no-pad-top My Profile
+    %hr/
+    %p.bold Welcome back!
+    - if @projects.empty?
+      
+      #projects.profile-section
+        %h2.section-title My Submitted Projects
+        %p.bold
+          You do not have any current projects.
+    - else
+      #projects.profile-section
+        %h2.section-title My Submitted Projects
+      %table.three-column-table
+        %tr
+          %th.td35 Room Name
+          %th.td35 Package Selected
+          %th.td30 Status
+        - @projects.each do |project|
+          %tr
+            %td
+              = project.room.title
+            %td
+              = project.package.title
+              
+              
+            %td
+              
+              Recieved       
+    
+    - if @design_requests.empty?
+      
+      #projects.profile-section
+        %h2.section-title My Open Projects
+        %p.bold
+          You do not have any current projects.
+    - else
+      #projects.profile-section
+        %h2.section-title My Open Projects
+      %table.three-column-table
+        %tr
+          %th.td35 Room Name
+          %th.td35 Package Selected
+          %th.td35 Step
+            
+          %th.td30 Action
+        - @design_requests.each do |project|
+          %tr
+            %td
+              -unless project.room.blank?
+                =project.room.title
+              -else
+                Untitled
+            %td
+              -unless project.package.blank?
+                =project.package.title
+              -else
+                Untitled
+            %td
+              -unless project.step.blank?
+                =project.step.titleize
+              -else
+                Untitled
+              
+            %td
+              = link_to "CONTINUE",design_requests_url(:design => project.design_hash), :class => 'btn btn-primary'
+                
+              
+    / #profile-prompt
+    /   %span.exclamation
+    /   %span
+    /     Your profile is only 70% complete!
+    /     \#{link_to 'Finish your profile here', "#"}
+    / %hr/
+    #account.profile-section
+      %h2.section-title My Account
+      %p.bold Change my account Email address and Password
+      = simple_form_for(:user, :as => :user, :url => customer_path(current_user), :method => "put", :html  => {:class => 'form-horizontal', :id => 'profile-form'}) do |f|
+        - if current_user && current_user.errors.any?
+          %ul
+            - current_user.errors.full_messages.each do |error|
+              %li
+                = error
+        %hr/
+        %p Fill the fields if you want to change email
+        = f.input :email, :label => false, :placeholder => 'New email'
+        = f.input :email_confirmation, :label => false, :placeholder => 'Confirm new email'
+        %hr/
+        %p Fill the fields if you want to change password
+        = f.input :password, :label => false, :placeholder => 'New password'
+        = f.input :password_confirmation, :label => false, :placeholder => 'Confirm new password'
+        %hr/
+        %p Current password
+        = f.input :current_password, :label => false, :placeholder => 'Current password'
+    - if @show_results
+      %hr/
+      #account.profile-section
+        %h2.section-title My Style
+        = render partial: 'style_polls/quiz_result', locals: { style_poll: current_user.style_poll }
+        = link_to "Retake Style Quiz", retake_quiz_customer_path(current_user), class: "b-orange-button project_custom_step_link"
+
+    = link_to 'Save', '#', :class => 'b-gray-button b-button'
+:javascript
+  $(".b-gray-button").click(function(event){
+    $("#profile-form").submit();
+    event.preventDefault();
+  });

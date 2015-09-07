@@ -1,0 +1,19 @@
+#get_started
+  .box
+    %h1.title
+      = "Payment Result"
+    %h1.step-title
+      = "Thank you for your payment."
+    .right-block  
+      %h1.step-title
+        = "Transaction Details"
+      .transaction-info
+        = label_tag "Amount: $#{@design_request.transaction.amount}"
+        = label_tag "Transaction ID: #{@design_request.transaction.transaction_id}"
+        = label_tag "First Name: #{@design_request.transaction.customer_first_name}"
+        = label_tag "Last Name: #{@design_request.transaction.customer_last_name}"
+        = label_tag "Email: #{@design_request.transaction.customer_email}"
+        = label_tag "Credit Card: #{@design_request.transaction.credit_masked_number}"
+        = label_tag "Card Type: #{@design_request.transaction.credit_card_type}"
+      .b-orange-button
+        = link_to "Finish", action: :finish

@@ -1,0 +1,16 @@
+#sign-up-for-tips.modal.fade
+  = form_tag('/mailchimp/subscribe', method: "post", id: "subscribe", remote: "true") do
+    .OptInForm
+      .OptInWrapper
+        .OptInTitle 
+          Design Tips, News & Offers
+          = link_to 'x', nil, :class => 'close', 'data-dismiss' => 'modal'
+        %div{:style => "padding:20px;"}
+          %p.header
+          #optinform_pnlFields
+            .Field
+              %span.required Email Address
+              #optinform_Field0= email_field(:email, :address, {id: "email", placeholder: "email address", class: "text"})
+          %p.footer
+          %p
+            = submit_tag("Subscribe", class: "subscribeButton")

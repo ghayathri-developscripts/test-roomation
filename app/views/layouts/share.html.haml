@@ -1,0 +1,26 @@
+!!! 5
+%html
+  %head
+    %title= @face_title
+    %meta{property: "og:title", content: "My Style #{face_title}"}
+    %meta{property: "og:type", content: "website"}
+    %meta{property: "og:url", content: face_url}
+    %meta{property: "og:description", content: face_desc}
+    %meta{property: "og:image", content: face_img}
+    %meta{property: "fb:app_id", content: "1514453178784662"}
+
+
+    = stylesheet_link_tag :application
+    = javascript_include_tag :application
+    = javascript_include_tag "zoomsl-3.0.min"
+    = csrf_meta_tags
+    = render "layouts/analytics"
+  %body{ :class => page_dom_class }
+    .container.l-content
+      %header.l-header= render 'layouts/header'
+      %article.b-content
+        = render 'shared/flash_messages'
+        = yield
+      %footer.l-footer= render 'layouts/footer'
+  -#face_img.take(4).each do |photo|
+    %meta{content: photo.url, property: "og:image"}

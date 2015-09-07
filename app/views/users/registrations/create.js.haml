@@ -1,0 +1,10 @@
+- if resource.errors.messages.any?  
+  :plain
+    $('.sign-up-errors').removeClass('hide')
+    $('.sign-up-errors').html("#{escape_javascript(render 'shared/errors', :resource => @user)}")
+- elsif params[:save_and_continue]
+  :plain
+    $.helpers.update_save_window()
+- else
+  :plain
+    window.location.reload(true) 

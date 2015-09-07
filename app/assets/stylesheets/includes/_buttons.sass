@@ -1,0 +1,35 @@
+.b-button
+  +disable-decoration
+  +disable-link-outline
+
+  display: inline-block
+  font-size: $baseFontSize
+  line-height: $baseLineHeight
+  color: $grayDark
+  cursor: pointer
+  text-align: center
+  +bootstrap-ie7-restore-left-whitespace
+
+.b-orange-button
+  @extend .b-button
+
+  border-bottom-color: #bbb
+  padding: 4px 17px 6px
+  font-size: 16px
+  font-family: "Futura_Medium" !important
+  +disable-link-color($white)
+  +border-radius(40px)
+
+  background-color: $vermilion
+  &:hover, &:active, &.active, &.disabled, &[disabled]
+    background-color: lighten($vermilion, 10%)
+
+.b-start-project-button
+
+.b-gray-button
+  @extend .b-orange-button
+
+  background-color: $gray
+  &:hover, &:active, &.active, &.disabled, &[disabled]
+    background-color: lighten($gray, 10%)
+

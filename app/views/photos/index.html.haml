@@ -1,0 +1,18 @@
+%h1 Listing images
+
+.well
+  = link_to 'New Photo', new_photo_path, :class => :btn
+
+#photos
+  - @photos.group_by(&:album).each do |album, photos|
+    .album.clearfix
+      %h2= album || "Without Album"
+      .photos
+        - photos.each do |photo|
+          .photo.left{:id => "photo_#{photo.id}"}
+            = image_tag photo.image.url(:thumb), :class => :thumbnail
+            %p
+              %center
+                = link_to 'Edit', [:edit, photo]
+                |
+                = link_to 'Delete', photo, confirm: 'Are you sure?', :method => :delete

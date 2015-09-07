@@ -1,0 +1,510 @@
+body.pages
+  &.home
+    #banner
+      text-align: center
+      ul.menu
+        +clearfix
+        list-style: none
+        li
+          float: left
+          padding: 10px 0
+          margin-right: 20px
+
+.style_board
+  padding-bottom: 20px
+  padding-top: 20px
+  img
+    float: left
+    padding: 0 20px 20px 0   
+  clear: both
+  h1.title
+    padding-top: 5px
+
+#how_it_works
+  hr.black
+    border-top: 1px solid black
+  h1
+    padding: 30px 0 17px 0
+  h1.title
+    font-size: 21px
+    font-family: Verdana, Arial, Helvetica, sans-serif
+    font-weight: bold
+  p.subtitle
+    color: #20d2d2
+    font-family: "Futura_Medium"
+    font-size: 16px
+  .no-pad-bottom
+    padding-bottom: 0px
+  .no-pad-top
+    padding-top: 0px
+  .bottom-40
+    margin-bottom: 40px
+  #tell-us
+    +image-block('how-it-works/bg1.png')
+  #review
+    +image-block('how-it-works/bg2.png')
+  #get-room
+    +image-block('how-it-works/bg3.png')
+  .left-pic
+    float: left
+    margin-right: 30px
+
+#downside_links
+  clear: both
+  padding: 0px 0px 20px 0px
+
+#pricing, #get_started, #about-us
+  .box
+    table, td, th
+      border: none
+      height: 25px
+    table
+      border-collapse: collapse
+      margin-bottom: 15px
+      margin-top: 15px
+      width: 370px
+      color: black
+    ul
+      list-style-image: url(pricing/bullet.png)
+  #tell-me
+    +image-block('pricing/pricing_bg1.png')
+    float: right
+  #tease-me
+    +image-block('pricing/pricing_bg2.png')
+    float: right
+  #show-me
+    +image-block('pricing/pricing_bg3.png')
+    float: right
+
+#pricing
+  .box
+    font-family: Verdana, Arial, Helvetica, sans-serif
+    font-size: 12px
+    color: #666666
+    padding: 0px 20px 20px 0px
+    margin-bottom: 55px
+    .link_inside
+      float: right
+    p, ul
+      width: 80%
+  .divider
+    color: #666666
+    margin-bottom: 45px
+  .header
+    width: 150px
+    margin-top: 30px
+    display: block
+    font-size: 21px
+    font-family: Verdana, Arial, Helvetica, sans-serif
+    font-weight: bold
+    color: #FF582A
+    
+  h1
+    font-family: "Sansumi-bold"
+    color: #666
+    float: left
+  h1.title
+    color: #0CC
+    font-family: "Futura_Medium"
+    font-size: 15px
+    font-weight: normal    
+    float: none
+
+.right-block
+  padding-left: 146px
+
+.grayed
+  background-color: #F6F6F6
+
+p.notation
+  font-size: 10px
+  width: 260px
+
+.bold
+  font-weight: bold
+
+#about-us
+  color: $gray
+  #furniture-bg
+    +image-block('about-us/furniture-bg.png')
+  #l-furniture
+    text-align: center
+
+#about-us, #faq
+  .right-block
+    padding-right: 130px
+  a
+    +font-family-verdana
+    color: $baseLinkColor
+    text-decoration: underline
+    &:hover
+      text-decoration: none
+
+
+#faq
+  .columns
+    width: 300px
+    list-style-type: none
+    margin-left: 0
+    li
+      padding-top: 5px
+  ul#left-column
+    float: left
+  ul#right-column
+    float: right
+  #qa-image
+    +image-block('faq/faq-letters.png')
+  ul
+    font-family: Verdana, Arial, Helvetica, sans-serif
+    list-style-type: disc
+    li
+      padding-top: 10px
+  h1.content
+    font-family: Verdana, Arial, Helvetica, sans-serif
+    font-size: 12px
+  p, ul
+    color: $gray
+  table
+    font-family: Verdana, Arial, Helvetica, sans-serif
+    color: #666
+    td.border-top
+      border-top: 1px solid red
+    td.border-bottom
+      border-bottom: 1px solid red
+    td.border-left
+      border-left: 1px solid red
+    td.border-right
+      border-right: 1px solid red
+
+#gallery
+  .right-block
+    padding-right: 30px
+  #gallery-text
+    float: left
+    width: 520px
+  .sample-list-button
+    float: right
+    margin-top: 20px
+  .gallery-image
+    width: 225px
+    height: 150px
+  .before
+    width: 225px
+    float: left
+    padding: 20px 20px 20px 0
+    border-right: 1px solid #E5E5E5
+  .after
+    float: left
+    padding: 20px 0
+    .gallery-image
+      margin: 0 0 0 40px
+      &:first-child
+        margin: 0 0 0 20px
+  .text
+    .before, .after
+      padding-top: 0
+      padding-bottom: 0
+      font-weight: bold
+      font-size: 14px
+      font-family: Verdana, Arial, Helvetica, Sans-serif
+    .after
+      padding-left: 20px
+  .header
+    width: 250px
+    margin-top: 18px
+    display: block
+    font-size: 16px
+    font-family: "Roboto-Regular"
+    color: #FF582A
+    text-transform: capitalize
+  ul
+    list-style-type: none
+  .row [class*="span"]
+    margin-left: 0.128%
+  .sub-header
+    font-size: 13px
+    margin-bottom: 33px
+    margin-top: 10px
+    font-family: "Roboto-Regular"
+    color: #716f70
+  .gallery_display
+    margin-left: 15px
+    min-height: 220px
+  .pagination
+    a, span
+      border-radius: 50% !important
+      margin: 0 5px
+  .pagination a
+    border-color: none !important
+    border-style: none !important
+  .pagination a:hover, .pagination .active a
+    background-color: #FF8263
+    color: white
+  .pagination a:current
+    color: red
+  .pagination
+    span
+      &.current
+        float: left
+        padding: 0 14px
+        line-height: 35px
+        text-decoration: none
+        background-color: #FF8263
+        color: white
+        font-weight: bold
+  .pagination
+    margin: 18px 0 18px 296px
+  .category-head
+    font-size: 20px
+    color: #716F70
+    margin-bottom: 14px
+    margin-left: -6px
+    font-family: Roboto-Regular
+  #cat_div > label
+    color: #716f70
+    font-family: Roboto-Regular
+    font-size: 12px
+  .font_family
+    font-family: "Roboto-Regular"
+    font-size: 13px
+    color: #716f70
+  input
+    &[type=checkbox]
+      display: none
+      + label:before
+        content: ""
+        display: inline-block
+        width: 20px
+        height: 20px
+        vertical-align: middle
+        margin-right: 8px
+        background-color: transparent
+        box-shadow: none
+        border: 1px solid #716F70
+        border-radius: 4px
+        margin-left: -28px
+      &:checked + label:before
+        content: "\2714"
+        /* Tick
+        color: white
+        background-color: #716F70
+        text-align: center
+        line-height: 20px
+        text-shadow: none
+
+#gallery-threeD
+  .page-header
+    border-bottom: none
+  .sub_header
+    color: #FF592A
+    text-shadow: none
+  .client_comment
+    margin-top: 50px
+  .about
+    background-color: #F7F7F7
+    margin-top: 60px
+  .before_after
+    display: block
+    margin-left: 80px
+  #owl-demo .item
+    margin: 3px
+    img
+      display: block
+      width: 100%
+      height: auto
+  .carousel-control.right
+    left: auto
+    right: 5px
+  .carousel-control
+    background: white none repeat scroll 0 0
+    color: black
+    font-size: 29px
+    font-weight: 100
+    height: 46px
+    left: 5px
+    line-height: 42px
+    margin-top: -20px
+    position: absolute
+    text-align: center
+    top: 48%
+    width: 15px
+    border: medium none
+    opacity: 1.0
+    border-radius: 0px
+  p.myclass:before
+    content: url(../assets/icons/quote1.png)
+    margin-right: 0.25em
+    vertical-align: 0.6em
+  p.myclass:after
+    content: url(../assets/icons/quote.png)
+    margin-left: 0.25em
+    vertical-align: 0.2em
+  p.myclass
+    color: #00cccc
+    font-size: 33px
+    line-height: 47px
+    margin-left: 11px
+    text-align: justify
+    display: inline
+    font-family: "Roboto-Regular"
+  .about_project
+    padding: 63px
+    font-family: "Roboto-Regular"
+    h1
+      color: #ff582a
+      margin-bottom: 10px
+      text-shadow: none
+  .about_project p
+    line-height: 24px
+    font-size: 13px
+    width: 500px
+  .ipad_image
+    margin-bottom: 26px
+    margin-left: 91px
+    margin-top: -43px
+  .list-inline
+    list-style: outside none none
+    margin-left: -5px
+    padding-left: 0
+  .list-inline > li
+    display: inline-block
+    padding-left: 5px
+    padding-right: 5px
+  .ipad
+    margin-bottom: 44px
+    margin-top: -42px
+  .thumbnail
+    background-color: white
+    padding: 9px
+  .client-details
+    background-image: url("../assets/icons/ipad.png")
+    background-repeat: no-repeat
+    height: 421px
+    margin-top: -39px
+  .client-content
+    padding: 63px
+  .main-head
+    color: rgb(0%, 80%, 80%)
+    font-size: 16px
+    font-family: "Roboto-Regular"
+  .sub-head
+    color: white
+    font-size: 14px
+    font-family: "Roboto-Regular"
+  .see_more 
+    background-color: #F7F7F7
+    height: 390px
+  .see_more > h2
+    padding: 64px
+  .other_projects
+    margin-top: 50px
+  .header
+    padding-bottom: 41px
+    padding-left: 41px
+    padding-top: 30px
+  .title
+    width: 250px
+    margin-top: 18px
+    display: block
+    font-size: 20px
+    font-family: "Roboto-Regular"
+    color: #FF582A
+    text-transform: capitalize
+  .sub-title
+    font-size: 13px
+    margin-bottom: 33px
+    margin-top: 10px
+    font-family: "Roboto-Regular"
+  .row.featured-product
+    background: #00CCCC none repeat scroll 0 0
+    height: 470px
+  #sub_gallery .carousel-control
+    color: black
+    background: transparent
+    font-size: 40px
+    top: 31%
+    line-height: 21px
+  #sub_gallery .carousel-control.right
+    right: -22px
+  #sub_gallery .carousel-control.left
+    left: -17px
+  #design_gallery .carousel-control
+    color: black
+    background: transparent
+    font-size: 40px
+    top: 31%
+    line-height: 21px
+  #design_gallery .carousel-control.right
+    right: -22px
+  #design_gallery .carousel-control.left
+    left: -17px
+  #featured_products .carousel-control
+    color: white
+    background: transparent
+    font-size: 40px
+    top: 31%
+    line-height: 21px
+  #featured_products .carousel-control.right
+    right: -22px
+  #featured_products .carousel-control.left
+    left: -17px
+  .product
+    background: #fff none repeat scroll 0 0
+    border-bottom: 2px solid red
+    height: 320px
+    padding: 20px
+  .description
+    margin-top: 27px
+    text-align: center
+    font-family: "Roboto-Regular"
+    cursor: pointer
+  .social-share-button-twitter
+    background: url(../assets/icons/twitt.png)
+    height: 34px
+    width: 34px
+  .social-share-button-facebook
+    background: url(../assets/icons/fb.png)
+    height: 34px
+    width: 34px
+  .social-share-button-pinterest
+    background: url(../assets/icons/pin.png)
+    height: 34px
+    width: 34px
+  h1, h2, h3, h4, h5, h6
+    font-family: "Roboto-Regular"
+    font-weight: normal
+  .store_name
+    color: #FF3445
+    text-align: center
+  .font_family
+    font-family: "Roboto-Regular"
+    color: #716f70
+  .carousel .item > img
+    height: 450px
+  #pininterest_share a
+    background: url(../assets/icons/pin.png) !important
+    padding: 15px 14px 32px 21px
+    height: 34px !important
+    width: 34px !important
+  .social_media
+    width: 486px
+  .span1 
+    width: 53px
+  .carousel-indicators
+    position: absolute
+    bottom: -15px
+    right: 204px
+    z-index: 5
+    margin: 0
+    list-style: none
+    li
+      background: #d1d1d1 none repeat scroll 0 0
+      border-radius: -12px
+      display: block
+      float: left
+      height: 2px
+      margin-left: 5px
+      text-indent: -999px
+      width: 25px
+    .active
+      background-color: #FC5A3A

@@ -1,0 +1,20 @@
+#get_started
+  %hr
+    .box
+      .row-fluid.steptxt.padboth1 Step #{get_step_header_number current_visual_index}
+      %h1.main_title
+        - if @value.eql?("Design Advice")
+          %h1.title My Room
+        - else
+          = step_header @design_request.human_step_name
+    
+    - if @design_request.errors.any?
+      #errors-block.b-error.alert.alert-error
+        - @design_request.errors.full_messages.each do |msg|
+          %div= msg
+      %hr
+      
+    = yield
+    
+    = render 'actions_bar'
+    = render 'save_and_continue'

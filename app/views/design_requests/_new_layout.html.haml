@@ -1,0 +1,7 @@
+#get_started
+  %hr
+    .row-fluid.steptxt.padboth1 Step 1
+    .row-fluid.plantxt.padboth1 Choose your plan
+    .row-fluid.padboth1
+    = simple_form_for @design_request, :url => wizard_path, :method  => :put , :html => {:multipart => true} do |f|
+      = yield f

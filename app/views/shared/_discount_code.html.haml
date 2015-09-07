@@ -1,0 +1,9 @@
+#discount-code.modal.fade
+  .modal-header
+    = link_to 'x', nil, class: 'close', 'data-dismiss' => 'modal'
+    %h3 Input Discount Code Here:
+  .modal-body
+    - path = @design_request.nil? ? nil : input_discount_design_request_path(@design_request) 
+    = simple_form_for :discount, url: path do |f|
+      = f.input :discount_code, label:  false, placeholder: 'discount code'
+      = f.submit 'Submit', class: 'btn btn-primary'

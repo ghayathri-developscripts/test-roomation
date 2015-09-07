@@ -1,0 +1,28 @@
+- unless defined? style_poll
+  - style_poll = current_style_poll
+#quiz-result
+  -if style_poll and style_poll.style_quiz_result
+    %h1
+      = "#{style_poll.style_quiz_result.name}"
+    %div
+      .first-description
+        - style_poll.style_quiz_result.style_description.split("\n").each do |paragraph|
+          %p
+            = "#{paragraph}"
+
+      .images
+        - style_poll_images(style_poll).take(4).each do |photo|
+          = image_tag photo.url
+    .color-line
+      = image_tag style_poll.color_quiz_result.color_spectrum.url
+    
+    .second-description
+      - style_poll.color_quiz_result.color_description.split("\n").each do |paragraph|
+        %p
+          = "#{paragraph}"
+
+:javascript
+  $(function(){
+    $("#quizModal").removeClass('quiz-reveal');
+    $("#quizModal").addClass('quiz quiz-result');
+  });

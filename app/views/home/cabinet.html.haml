@@ -1,0 +1,9 @@
+-if designer_signed_in?
+  =render :partial=>"designer_menu"
+-elsif user_signed_in?
+  =render :partial=>"customer_menu"
+-else
+  %h2
+    Please login according you status
+  %h3{:style=>"margin-top:-30px;padding-left:100px;"}
+    (as designer or as user)   

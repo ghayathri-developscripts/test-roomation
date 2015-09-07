@@ -1,0 +1,35 @@
+#sign-up.modal.fade
+  = simple_form_for(:user, :as => :user, :url => :user_registration, :remote  => true, :html  => {:id => 'sign-up-form'}) do |f|
+    .modal-header
+      = link_to 'x', nil, :class => 'close', 'data-dismiss' => 'modal'
+      %h3 Join the Roomations Community!
+    .modal-body  
+    #signup                                                   
+      .b-login-form
+        .b-errors-wrap
+          .sign-up-errors.b-error.alert.alert-error.hide
+        = f.input :first_name
+        = f.input :last_name
+        = f.input :email
+        / = f.input :email_confirmation
+        = f.input :password
+        = f.input :password_confirmation
+        %p.terms
+          %span
+            = f.check_box :terms_agreement
+          Accept the
+          = link_to 'Terms of Use', '/terms-of-use', :class => 'terms-window'
+          and
+          = succeed '.' do
+            = link_to 'Privacy Policy', '/policy', :class => 'terms-window'
+          We will never rent or sell your email to third parties.
+    .facebook  
+      OR Join Roomations with Facebook
+      / = submit_tag 'Sign Up', :class => 'btn btn-primary' ,:id=>"signload"
+      = link_to user_omniauth_authorize_path(:facebook), :title => 'Sign in with Facebook' do
+        %i.b-ficon.b-facebook-login-icon
+      Already a member?
+      = link_to 'Sign in', '#sign-in', 'data-toggle' => :modal
+    .modal-footer
+      = link_to 'Close', nil, :class => 'btn', 'data-dismiss' => 'modal'
+      = f.submit 'Sign Up', :class => 'btn btn-primary'

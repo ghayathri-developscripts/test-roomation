@@ -1,0 +1,7 @@
+- if @reveal.errors.messages.any?  
+  :plain
+    $('#reveal-errors').removeClass('hide')
+    $('#reveal-errors').html("#{escape_javascript(render 'shared/errors', :resource => @reveal)}")
+- else
+  :plain
+    $.style_quiz.updateQuizContent('Your style is', "#{escape_javascript(render 'quiz_result')}");

@@ -1,0 +1,9 @@
+= simple_form_for @photo, :html => {:multipart => true} do |f|
+  = f.input :image
+  = f.input :name
+  = f.input :album_name
+  = f.input :description
+  .actions
+    = f.submit
+    or
+    = link_to "Cancel", :photos, :class => :cancel

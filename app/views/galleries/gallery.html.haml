@@ -1,0 +1,76 @@
+#gallery
+  %hr/
+  %div
+    %h1.no-pad-top Gallery
+    %br
+      %br
+        .container
+          .row-fluid
+            .span3{:style => "margin-left: 7px;"}
+              - @categories = Category.all
+              - @categories.each do |category|
+                .category-head= category.name
+                %ul
+                  - category.sub_categories.each do |sub_cat|
+                    #cat_div
+                      %input{:checked => "", :id => sub_cat.name, :name => sub_cat.name, :type => "checkbox", :value => sub_cat.id}
+                        %label{:for => sub_cat.name}= sub_cat.name
+                        %br
+              %br
+                %br
+                  .category-head Plans
+                  %ul
+                    #plan_div
+                      %input#style_board{:checked => "", :name => "style_board", :type => "checkbox", :value => "1"}
+                        %label.font_family{:for => "style_board"}
+                          Style Boards
+                          %label
+                            %br
+                              %input#3d_plan{:checked => "", :name => "3d_plan", :type => "checkbox", :value => "2"}
+                                %label.font_family{:for => "3d_plan"} 3D Room Visions
+                  %a#reset_all{:href => "#"} Reset All
+            .span9{:style => "margin-left: -5px;"}
+              #myGallery.row
+                - @galleries.each do |gallery|
+                  - gallery_album = gallery.project_albums.first
+                  .span4
+                    .gallery_display
+                      .l-testimonial-image
+                        = link_to(image_tag(gallery_album.image.small_thumb), show_path(gallery.id))
+                      .header
+                        = gallery.title
+                      %p.sub-header
+                        = gallery.sub_category_name
+                        in&nbsp;#{gallery.location}
+              .row
+                = paginate @galleries
+:javascript
+  function updateGallery() {
+
+      var allVals = [];
+      var planVals = [];
+      $('#cat_div :checked').each(function () {
+          allVals.push($(this).val());
+      });
+      $('#plan_div :checked').each(function () {
+          planVals.push($(this).val());
+      });
+      $.ajax({
+        url: "/gallery?type_ids="+allVals+"&"+"plan_ids="+planVals,
+        success: function(data) {
+          var result = $(data).find('#myGallery').html();
+          $('#myGallery').html(result)
+        }
+      });
+  }
+  $(function () {
+      $('#cat_div input').click(updateGallery);
+      $('#plan_div input').click(updateGallery)
+  });
+
+  $(document).ready(function(){
+      $('#reset_all').click(function(e){
+      e.preventDefault();
+      $('input:checkbox').prop('checked',false);
+    });
+  });

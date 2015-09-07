@@ -1,0 +1,58 @@
+- path = gallery.persisted? ? admin_gallery_path(gallery) : admin_galleries_path
+#portfolio-gallery
+  = semantic_nested_form_for gallery, url: path  do |f|
+    = f.inputs do
+      = f.input :front_end_type, label: "Front End Template", :as => :select, :collection => plan_type
+      = f.input :category_id, :as => :select, :collection => Hash[Category.all.map{|b| [b.name,b.id]}]
+      = f.input :sub_category_id, :as => :select, :collection => Hash[SubCategory.all.map{|b| [b.name,b.id]}]
+      = f.input :project_type, :as => :select, :collection => plan_type
+      = f.input :title, :label => "Project Title"
+      = f.input :user_id, :as => :select, :collection => Hash[User.designers.all.map{|b| [b.full_name,b.id]}], :label => "Designer"
+      .ckeditor_style
+        = f.input :about_project, :as => :ckeditor, label: "About this Project"
+      = f.input :comment, input_html: { cols: 2, rows: 3}
+    = f.inputs "Client Profile" do
+      = f.input :style
+      = f.input :budget, :as => :string
+      = f.input :location
+    = f.inputs "Before and After Image", wrapper: false do
+      .portfolio-images
+        .portfolio-image.fields
+          .image
+            - if f.object.before_image.present?
+              = image_tag f.object.before_image.thumb
+            = f.input :before_image, :as => :file, :input_html => { :multipart => true }
+            - if f.object.after_image.present?
+              = image_tag f.object.after_image.thumb
+            = f.input :after_image, :as => :file, :input_html => { :multipart => true }
+
+    = f.inputs "Images" do
+      .portfolio-images
+        = f.fields_for :project_albums, (f.object.project_albums.present? ? f.object.project_albums : ProjectAlbum.new), wrapper: false do |album|
+          .portfolio-image.fields
+            .image
+              - if album.object.image.present?
+                = image_tag album.object.image.thumb
+                = album.input :image
+              - else
+                = album.input :image, :as => :file, :input_html => {:multipart => true}
+              = album.link_to_remove "Remove"
+        = f.link_to_add "Add a Project Image", :project_albums, as: :button
+
+    = f.inputs "Featured Products" do
+      .portfolio-images
+      = f.fields_for :featured_products,(f.object.featured_products.present? ? f.object.featured_products : FeaturedProduct.new), wrapper: false do |product|
+        .portfolio-image.fields
+          .image
+            - if product.object.image.present?
+              = image_tag product.object.image.thumb
+              = product.input :image
+            - else
+              = product.input :image, :as => :file, :input_html => {:multipart => true}
+            = product.input :name,label: "Product Name", input_html: {style: 'width: 91%;'}
+            = product.input :store_name, input_html: {style: 'width: 91%;'}
+            = product.input :price, input_html: {style: 'width: 91%;'}
+            = product.input :description, label: "Link", input_html: { rows: 2}
+            = product.link_to_remove "Remove"
+      = f.link_to_add "Add a product", :featured_products, :as => :button
+    = f.actions

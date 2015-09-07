@@ -1,0 +1,40 @@
+- path = designer.persisted? ? admin_designer_path(designer) : admin_designers_path
+#portfolio-gallery
+  = semantic_nested_form_for designer, url: path do |f|
+    = f.inputs do
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :description, input_html: { rows: 2 }
+      = f.input :email
+      = f.input :email_confirmation
+      = f.input :password
+      = f.input :password_confirmation
+      = f.input :role_id, as: :hidden, input_html: { value: Role.designer.id }
+
+    %h1.bold= designer.photo_album.name
+    = f.fields_for :photo_album do |album_form|
+      - if album_form.object.main_photo.present?
+        = image_tag album_form.object.main_photo.image.thumb
+      - else
+        = image_tag "for-designers/no_image.png"
+      = album_form.inputs do
+        = album_form.input :main_photo_id, as: :hidden
+        .portfolio-images
+          = album_form.fields_for :photos, wrapper: false do |photo_form|
+            .portfolio-image.fields
+              .image
+                - if photo_form.object.image.present? || photo_form.object.image_cache.present?
+                  = image_tag photo_form.object.image.thumb
+                - else
+                  = photo_form.input :image
+                - unless photo_form.object.new_record?
+                  = radio_button_tag "user[photo_album_attributes][main_photo_id]", photo_form.object.id, photo_main_in_album?(photo_form.object, album_form.object)
+                  = label_tag "user[photo_album_attributes][main_photo_id][#{photo_form.object.id}]", "Make as main"
+                  |
+                = photo_form.link_to_remove "Remove"
+                = photo_form.input :image_cache, as: :hidden
+                = photo_form.input :id, as: :hidden
+              = photo_form.input :description, label: false, input_html: { rows: 3}
+          = album_form.link_to_add "Add a photo", :photos, as: :button
+
+    = f.actions

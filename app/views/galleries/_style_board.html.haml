@@ -1,0 +1,196 @@
+:css
+  .b-content {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+  }
+  .l-footer {
+    margin-top: 0 !important;
+  }
+#gallery-threeD
+  %hr
+    .container.l-content
+      / Project Title
+      .page-header
+        %h1= gallery.title
+        %h2
+          %small.sub_header
+            by&nbsp;#{gallery.designer.full_name}
+      / Main Style Board
+      .row
+        %div
+          - if albums.present?
+            - albums.each do |album|
+              = image_tag album.image, :style => "width:100%;"
+      / About thi project
+      .row-fluid.about
+        .span7
+          .about_project
+            %h1 About This Project
+            %p= raw(gallery.about_project)
+        .span5.client-details
+          / <img src="/assets/icons/ipad.png" class="ipad">
+          .client-content
+            - if gallery.style.present?
+              .main-head Style
+              .sub-head= gallery.style
+            %br
+              - if gallery.style.present?
+                .main-head Room
+                .sub-head= gallery.sub_category_name
+              %br
+                - if gallery.plan_type.present?
+                  .main-head Plan
+                  .sub-head= gallery.plan_type
+                %br
+                  - if gallery.budget.present?
+                    .main-head Budget
+                    .sub-head
+                      $ #{gallery.budget}
+                  %br
+                    - if gallery.location.present?
+                      .main-head Location
+                      .sub-head= gallery.location
+                    %br
+      / Featured Projects
+      - if products.present?
+        .row.featured-product
+          .span12
+            .header
+              %h1{:style => "color:white"} Featured Products
+            .span12
+              #featured_products.carousel.slide
+                / Carousel items
+                .carousel-inner
+                  - products.each_with_index do |product, index|
+                    - if index == 0
+                      .item.active
+                        .row-fluid
+                          - product.each do |gallery|
+                            .span3.product.link_to{data: {:url => "#{gallery.description}"} }
+                              %a{:href => "javascript:void(0)"}
+                                = image_tag gallery.image.slider_thumb, style: "max-width:100%;"
+                              .description
+                                = gallery.name if gallery.name.present?
+                                %p.store_name= gallery.store_name if gallery.store_name.present?
+                                - if gallery.price.present?
+                                  $#{gallery.price }
+                    - else
+                      .item
+                        .row-fluid
+                          - product.each do |gallery|
+                            .span3.product.link_to{data: {:url => "#{gallery.description}"} }
+                              %a{:href => "javascript:void(0)"}
+                                = image_tag gallery.image.slider_thumb, style: "max-width:100%;"
+                              .description
+                                = gallery.name if gallery.name.present?
+                                %p.store_name= gallery.store_name if gallery.store_name.present?
+                                - if gallery.price.present?
+                                  $#{gallery.price }
+                / /carousel-inner
+                - if products.count > 1
+                  %a.left.carousel-control{"data-slide" => "prev", :href => "#featured_products"} ‹
+                  %a.right.carousel-control{"data-slide" => "next", :href => "#featured_products"} ›
+              / /myCarousel
+      / More Rooms by Designer
+      - if other_galleries.present?
+        .row.other_projects
+          .span12
+            .header
+              %h1 More rooms by this designer
+            .span12
+              #design_gallery.carousel.slide
+                / Carousel items
+                .carousel-inner
+                  - other_galleries.each_with_index do |gallery, index|
+                    - if index == 0
+                      .item.active
+                        .row-fluid
+                          - gallery.each do |gallery|
+                            - @album = gallery.project_albums.first
+                            .span3
+                              = link_to(image_tag(@album.image.small_thumb, style: "max-width:100%;"), show_path(gallery.id))
+                              .title= gallery.title
+                              .sub-title
+                                = gallery.sub_category_name
+                                in&nbsp;#{gallery.location}
+                    - else
+                      .item
+                        .row-fluid
+                          - gallery.each do |gallery|
+                            - @album = gallery.project_albums.first
+                            .span3
+                              = link_to(image_tag(@album.image.small_thumb, style: "max-width:100%;"), show_path(gallery.id))
+                              .title= gallery.title
+                              .sub-title
+                                = gallery.sub_category_name
+                                in&nbsp;#{gallery.location}
+                / /carousel-inner
+                - if other_galleries.count > 1
+                  %a.left.carousel-control{"data-slide" => "prev", :href => "#design_gallery"} ‹
+                  %a.right.carousel-control{"data-slide" => "next", :href => "#design_gallery"} ›
+              / /myCarousel
+      - if sub_galleries.present?
+        .see_more
+          / More Gallery
+          .header
+            %h1
+              See More #{gallery.sub_category_name}
+          .span12{:style => "margin-left: 39px; margin-right: 60px;"}
+            #sub_gallery.carousel.slide
+              / Carousel items
+              .carousel-inner
+                - sub_galleries.each_with_index do |gallery, index|
+                  - if index == 0
+                    .item.active
+                      .row-fluid
+                        - gallery.each do |gallery|
+                          - @album = gallery.project_albums.first
+                          .span3
+                            = link_to(image_tag(@album.image.small_thumb, style: "max-width:100%;"), show_path(gallery.id))
+                            .title= gallery.title
+                            .sub-title
+                              = gallery.sub_category_name
+                              in&nbsp;#{gallery.location}
+                  - else
+                    .item
+                      .row-fluid
+                        - gallery.each do |gallery|
+                          - @album = gallery.project_albums.first
+                          .span3
+                            = link_to(image_tag(@album.image.small_thumb, style: "max-width:100%;"), show_path(gallery.id))
+                            .title= gallery.title
+                            .sub-title
+                              = gallery.sub_category_name
+                              in&nbsp;#{gallery.location}
+              / /carousel-inner
+              - if sub_galleries.count > 1
+                %a.left.carousel-control{"data-slide" => "prev", :href => "#sub_gallery"} ‹
+                %a.right.carousel-control{"data-slide" => "next", :href => "#sub_gallery"} ›
+            / /myCarousel
+    :javascript
+      $(document).ready(function() {
+        $('#sub_gallery').carousel({
+          interval: 10000
+        });
+        $('#other_galleries').carousel({
+          interval: 10000
+        });
+        $('#featured_products').carousel({
+          interval: 10000
+        });
+        $('.link_to').click(function(e){
+          var href = $(this).data('url');
+          var banner_url = href;
+           if (banner_url && !banner_url.match(/^http([s]?):\/\/.*/)) {
+             banner_url = 'http://' + banner_url;
+           }
+          win = window.open(banner_url,'_blank');
+          if(win){
+           //Browser has allowed it to be opened
+           win.focus();
+          }else{
+           //Broswer has blocked it
+           alert('Please allow popups for this site');
+          }
+        });
+      });

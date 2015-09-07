@@ -1,0 +1,8 @@
+- if @show_results
+   #account.profile-section
+      %h2.section-title My Style
+      - if user_signed_in?
+         = render partial: 'style_polls/quiz_result_share', locals: { style_poll: @user_id.style_poll }
+      - else
+         = render partial: 'style_polls/quiz_result_share', locals: { style_poll: @style_poll }
+

@@ -1,0 +1,27 @@
+#sign-in.modal.fade
+  .modal-header
+    = link_to 'x', nil, :class => 'close', 'data-dismiss' => 'modal'
+    %h3 Welcome Back!
+  .modal-body  
+    / %h3 Welcome Back! 
+    .b-login-form
+      = simple_form_for(:user, :as => :user, :url => user_session_path, :remote => true, :html  => {:id => 'login-form', :class  => 'horizontal-form'}) do |f|
+        .b-errors-wrap
+          #login-errors.b-error.alert.alert-error.hide
+        = f.input_field :email, :label  => false, :placeholder  => 'email', :class => 'input-small'
+        = f.input_field :password, :label  => false, :placeholder  => 'password', :class => 'input-small'
+        .help-inline
+          = f.input_field :remember_me, :as => :boolean
+          Remember me
+        = f.submit 'Sign In', :class => 'btn btn-primary'
+      = link_to "Forgot your password?" ,"/users/password/new"
+    .facebook  
+      OR Login with Facebook
+      / = submit_tag 'Sign Up', :class => 'btn btn-primary' ,:id=>"signload"
+      = link_to user_omniauth_authorize_path(:facebook), :title => 'Sign in with Facebook' do
+        %i.b-ficon.b-facebook-login-icon
+      Not a member yet?
+      = link_to 'Join Now', '#sign-up', 'data-toggle' => :modal
+    
+  .modal-footer
+    = link_to 'Close', nil, :class => 'btn', 'data-dismiss' => 'modal'

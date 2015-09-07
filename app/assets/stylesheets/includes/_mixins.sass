@@ -1,0 +1,50 @@
+=image-block($path)
+  background: image-url($path) no-repeat scroll 0 0 transparent
+  width: image-width($path)
+  height: image-height($path)
+  display: inline-block
+
+=icon($path)
+  +image-block("icons/#{$path}")
+
+=disable-decoration
+  text-decoration: none !important
+  &:hover
+    text-decoration: none !important
+
+=disable-link-color($color: #FFFFFF)
+  color: $color !important
+  &:hover, &:active
+    color: $color
+
+=disable-link-outline
+  outline: none !important
+  &:focus
+    outline: none !important
+
+=margin-indent
+  margin-left: $page_indent
+  margin-right: $page_indent
+
+=hide-text
+  text-indent: -99999px
+  *text-indent: 0
+  
+=font-family-verdana
+  font-family: Verdana, Arial, Helvetica, sans-serif
+  
+=dark-blue-links
+  +font-family-verdana
+  color: #3366BB
+  text-decoration: underline
+  &:hover
+    text-decoration: none
+
+=text-shadow-mixin($color)
+  text-shadow: 0px 0px 1px $color
+
+=shadow-vermilion
+  +text-shadow-mixin($vermilion)
+  
+=shadow-gray
+  +text-shadow-mixin(#888)

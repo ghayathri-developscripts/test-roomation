@@ -1,0 +1,13 @@
+!!! 5
+%html
+  %head
+    %title= page_title
+    %meta{:name => 'description', :content => page_title}
+    = stylesheet_link_tag :terms
+    = javascript_include_tag :application
+    = csrf_meta_tags
+    = render "layouts/analytics"
+  %body{ :class => [ page_dom_class, 'terms'] }
+    .container
+      = yield
+    

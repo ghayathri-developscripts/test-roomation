@@ -1,0 +1,4 @@
+- if @gallery.front_end_type == 1
+  = render :partial => "style_board", :locals => {:gallery => @gallery, :albums => @albums, :products => @products, :other_galleries => @other_galleries, :sub_galleries => @sub_galleries}
+- else
+  = render :partial => "threeD_vision", :locals => {:gallery => @gallery, :albums => @albums, :products => @products, :other_galleries => @other_galleries, :sub_galleries => @sub_galleries}

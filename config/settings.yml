@@ -1,0 +1,18 @@
+---
+# =============================================================================
+# General application settings
+# =============================================================================
+development: &dev
+  braintree:
+    env: "sandbox"
+    merchant_id: "cf4j442pbvmh65hg"
+    public_key: "9jps8p98y4y4bnd9"
+    private_key: '95fa7f2501155525538f09d67dc019cd'
+test:
+  <<: *dev
+production:
+  braintree:
+    env: "production"
+    merchant_id: "g4zyz7ht8457xjs4"
+    public_key: "hxfhjdv4n2n5pwft"
+    private_key: '4f6a51dc71b3cd40adf2fa25cef0a9ff'

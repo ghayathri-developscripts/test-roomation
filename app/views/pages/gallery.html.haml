@@ -1,0 +1,58 @@
+#gallery
+  %hr
+  %div
+    %h1.no-pad-top Gallery
+    %div.clearfix
+      %p.top-20#gallery-text
+        Check out the gallery of work our interior designers have done for real customers.
+        Each of these designs was customized to their taste and budget.
+      = link_to "See sample shopping list", "http://blog.roomations.com/p/shopping.html", :class => 'b-orange-button sample-list-button'
+      :css
+        .lightPlayer .stage {
+        bottom: -145px !important;
+        top: -171px !important;
+        }
+      %div#iframe-wrp
+        %iframe{name: "gal_view", allowfullscreen: "", frameborder: "0", height: "421", marginheight: "0", marginwidth: "0", scrolling: "no", src: "http://www.slideshare.net/slideshow/embed_code/35931648?rel=0", style: "border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;width: 100%;", width: "512"}
+      %div{style: "margin-bottom:5px"}
+        %strong
+          %a{href: "https://www.slideshare.net/roomations/roomations-beforeafter-photos", target: "_blank", title: "Roomations Before-After Photos"} Roomations Before-After Photos
+        from
+        %strong
+          %a{href: "http://www.slideshare.net/roomations", target: "_blank"} roomations
+
+-#.gallery-content.top-20
+  .gallery-row.text.clearfix
+    .before
+      Before
+    .after
+      After
+  - 8.times do |i|
+    .gallery-row.clearfix
+      .before
+        = link_to image_tag("gallery/before_#{i+1}.png", :class  => "gallery-image"), "/assets/gallery/before_large_#{i+1}.jpg", :rel  => "group", :class  => "fancybox", :title  => "before"
+      .after
+        = link_to image_tag("gallery/after_f_#{i+1}.png", :class  => "gallery-image"), "/assets/gallery/after_f_large_#{i+1}.jpg", :rel  => "group", :class  => "fancybox", :title  => "after"
+        = link_to image_tag("gallery/after_s_#{i+1}.png", :class  => "gallery-image"), "/assets/gallery/after_s_large_#{i+1}.jpg", :rel  => "group", :class  => "fancybox", :title  => "after"
+-#:javascript
+  $(function() {
+    $(".fancybox").fancybox({
+      type: 'image',
+      minHeight: 600,
+      maxHeight: 600,
+      arrows: true,
+      closeBtn: true,
+      nextClick: true,
+      nextEffect: 'fade',
+      prevEffect: 'fade'
+    });
+  });
+  .lightPlayer .stage {
+  background: #ccc;
+  bottom: -145px;
+  max-height: 100%;
+  overflow: hidden;
+  top: -171px;
+  width: 100%;
+  min-height: 473px;
+  }

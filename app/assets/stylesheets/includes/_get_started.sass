@@ -1,0 +1,343 @@
+#get_started 
+  color: $gray
+  font-family: Verdana, Arial, Helvetica, sans-serif
+  .step-title
+    font-family: Verdana, Arial, Helvetica, sans-serif
+    font-size: 22px
+  #money-back
+    text-transform: uppercase
+    background-color: $vermilion
+    float: left
+    color: white
+    width: 100px
+    text-align: center
+    padding: 5px
+    font-size: 14px
+    margin-right: 10px
+    span
+      clear: both    
+    .bold
+      font-weight: bold
+  #secure_checkout
+    text-align: right
+  #start-dream
+    margin-top: 4px
+
+  #step1   
+    +image-block('new_level_guidance/1.png')
+  #step2
+    +image-block('new_level_guidance/2.png')
+  #step3
+    +image-block('new_level_guidance/2.png')
+  #step4
+    +image-block('new_level_guidance/3.png')
+  #step5
+    +image-block('new_level_guidance/4.png')
+  #step6
+    +image-block('new_level_guidance/5.png')
+  #step7
+    +image-block('new_level_guidance/6.png')
+  #step8
+    +image-block('new_level_guidance/6.png')
+  #header-of-state
+    margin-top: 20px
+    .current
+      color: $gray
+    .past
+      a
+        color: $gray
+        font-family: Verdana, Arial, Helvetica, sans-serif
+        text-decoration: underline
+        &:hover
+          text-decoration: none
+    .future
+      color: #CFCFCF
+    #step-1
+    #step-2
+      margin-left: 35px
+    #step-3
+      margin-left: 100px
+    #step-4
+      margin-left: 120px
+    #step-5
+      float: right
+
+  .header
+    color: $vermilion
+    font-weight: bold
+    font-size: 22px
+    padding-top: 5px
+  .subtitle
+    color: $turquoise
+    font-family: "Futura_Medium"
+    font-size: 16px
+    clear: both
+    +text-shadow-mixin($turquoise)
+  .expand-area
+    +image-block('steps/arrow.png')
+    float: left
+    margin-right: 5px
+  .expanded
+    +image-block('steps/arrow_expanded.png')
+
+  .move-upper
+    margin-top: -65px
+  #target-tell-me
+    min-height: 200px
+  #target-tease-me
+    min-height: 247px
+  #target-show-me
+    min-height: 363px
+  #actions-bar
+    text-align: center
+    height: 36px
+    margin-top: 15px
+    margin-bottom: 15px
+    background-color: $gray
+    +border-radius(20px) 
+    .text
+      display: inline-block
+      padding-top: 5px
+    #backward
+      float: left
+      width: 150px
+      margin-left: 3px
+      span.arrow
+        float: left
+        +image-block('steps/round_arrow_left.png')
+    #forward      
+      float: right
+      width: 120px
+      span.arrow
+        float: right
+        +image-block('steps/round_arrow_right.png')
+    #save
+      display: inline-block
+      margin-top: 7px
+      a
+        color: white
+        font-size: 18px
+        text-decoration: underline
+        &:hover
+          text-decoration: none
+
+    .side-button
+      display: block
+      font-size: 18px
+      margin-top: 3px
+      margin-right: 3px
+      background-color: white
+      +border-radius(20px)
+      a
+        color: $vermilion
+  .pics
+    img
+      padding: 10px 20px 10px 0px
+    .step-2-pic
+      display: inline-block
+      width: 300px
+
+  #nextSetLink
+    color: $gray
+    font-family: Verdana, Arial, Helvetica, sans-serif
+    text-decoration: underline
+    &:hover
+      text-decoration: none
+        
+  #bottom_link
+    color: $gray
+    font-family: Verdana, Arial, Helvetica, sans-serif
+    text-decoration: underline
+    &:hover
+      text-decoration: none
+
+  .orange-underlined-link
+    color: $vermilion
+    font-family: Verdana, Arial, Helvetica, sans-serif
+    text-decoration: underline
+    &:hover
+      text-decoration: none
+  .gray-underlined-link
+    @extend .orange-underlined-link
+    color: $gray
+    
+  #input-with-links
+    span
+      margin-right: 100px
+      margin-top: 10px
+      input
+        width: 300px
+    a
+      color: $gray
+      font-family: Verdana, Arial, Helvetica, sans-serif
+      text-decoration: underline
+      &:hover
+        text-decoration: none
+  .orange-title
+    font-family: Verdana, Arial, Helvetica, sans-serif
+    font-weight: bold
+    color: $vermilion
+    font-size: 18px
+    +shadow-vermilion
+  .dimensions
+    margin-bottom: 10px
+    span
+      width: 70px
+      padding-right: 35px
+      display: inline-block
+    input
+      width: 60px
+  #whd
+    float: right
+    +image-block('steps/step2-whd.png')
+  #whd-2
+    float: right
+    +image-block('steps/step2-whd2.png')
+
+  .designer
+    +clearfix
+    .photo
+      float: left
+      margin-right: 10px
+      img
+        padding-top: 10px
+    #first-bg
+      +image-block('steps/step4-bg1.png')
+    #second-bg
+      +image-block('steps/step4-bg2.png')
+    #third-bg
+      +image-block('steps/step4-bg3.png')
+    .folio-photos
+      img
+        padding: 10px 10px 10px 0px
+    .controls
+      margin-top: 10px
+      .choose-designer
+        float: right
+        span
+          font-family: "Futura_Medium"
+          font-size: 17px
+          color: $vermilion
+        input
+          margin-bottom: 8px
+          margin-right: 5px
+    .info
+      h1.title      
+        font-family: Verdana, Arial, Helvetica, sans-serif
+        font-weight: bold
+        font-size: 18px
+  #checkout
+    #money-back
+      float: none
+    +clearfix
+    h1
+      font-family: Verdana, Arial, Helvetica, sans-serif
+      font-size: 18px
+    #billing-info
+      border-left: 1px solid #E5E5E5
+      margin-left: 580px
+      padding-left: 35px
+      .header
+        +clearfix
+        color: $gray
+        font-size: 12px
+        margin-top: 10px
+        height: 17px
+      label
+        width: 200px
+        float: left
+        margin-top: 3px
+      select.date, input.phone
+        width: 60px
+      input.phone-2
+        width: 135px
+      input.zipcode
+        width: 70px
+      a
+        margin-top: 15px
+    #summary
+      width: 580px
+      float: left
+      img
+        float: left
+        margin: 15px 10px 0 10px 
+    #total
+      margin-top: 20px
+      margin-bottom: 25px
+      width: 130px
+    #details
+      a
+        margin-top: 15px
+  #place-order
+    margin-top: 20px
+
+  .simple_form
+    .input
+      margin-bottom: 5px
+    .option
+      input
+        float: left
+        margin-right: 10px
+      label
+        color: #666
+        font-family: Verdana, Arial, Helvetica, sans-serif
+  .width-95
+    width: 95%
+  .width-70
+    width: 70%
+  .width-300px
+    width: 300px
+  .width-80px
+    width: 80px
+    
+  .room_continued_pics
+    .img-block
+      padding: 10px 20px 10px 0px
+      display: inline-block
+      max-width: 120px
+      vertical-align: top
+      .img-info
+        text-align: center
+    .art
+      @extend .img-block
+      padding: 10px 10px 10px 0px
+    .material
+      @extend .img-block
+      max-width: 150px
+      .img-info110
+        height: 110px
+      
+  .title-description
+    font-weight: normal
+    font-size: 80%
+  
+  .column
+    width: 300px
+    float: left
+    padding-left: 10px
+    
+  /*  style assesment page */
+  .style-assesment-container
+    min-height: 200px
+    margin-bottom: 40px
+      
+  .radio input[type="radio"], .checkbox input[type="checkbox"]
+    margin-left: 0
+  
+  .radio, .checkbox
+    min-height: 0
+    
+  .field_with_errors
+    padding: 10px
+
+  .shop-input
+    span
+      top: 3px
+      position: relative
+      
+
+table
+  &.pricing-table
+    tr:nth-child(odd)
+      background-color: #F6F6F6
+    

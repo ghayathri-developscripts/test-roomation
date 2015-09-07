@@ -1,0 +1,13 @@
+#quiz
+  .description
+    Click on the image you like most:
+  #quiz-questions.flexslider
+    %ul.slides.questions-container
+      - @questions_groups.each do |group_id, group|
+        = render 'style_polls/question', :group  => group, :group_id  => group_id
+    
+
+:javascript
+  $(function(){
+    $.style_quiz.initQuiz("#{@questions_groups.size}", "#{style_assesment_last_group}");
+  });

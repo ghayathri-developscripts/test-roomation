@@ -1,0 +1,16 @@
+#quizModal.modal.fade
+  .modal-header
+    = link_to 'x', nil, :class => 'close', 'data-dismiss' => 'modal' 
+    %h3#quiz-title
+      = title
+  .modal-body
+    = yield
+  .modal-footer
+    = link_to 'Close', nil, :class => 'btn', 'data-dismiss' => 'modal'
+ 
+:css
+  .modal{position:absolute !important;}   
+:javascript
+  $(function(){
+    $.style_quiz.showQuizModal();
+  });

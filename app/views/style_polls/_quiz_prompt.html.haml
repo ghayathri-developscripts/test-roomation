@@ -1,0 +1,12 @@
+#quiz-prompt
+  %h1 Find Your Personal Style.
+  .images
+    - ColorSet.all.each do |item|
+      = image_tag item.photo.url
+  .prompt
+    = link_to 'Get Started', '#', :id  => "start_quiz", :class  => "b-gray-button"
+
+:javascript
+  $(function(){
+    $.style_quiz.initQuizPrompt();
+  });

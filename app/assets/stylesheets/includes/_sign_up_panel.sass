@@ -1,0 +1,83 @@
+.l-sign-up-panel
+  +clearfix
+
+  background-color: $header_background_color
+  padding-left: $page_indent
+  padding-right: $page_indent
+  height: $sign_up_panel_height
+  font-size: $sign_up_panel_font_size
+  margin-bottom: 22px
+  overflow: visible
+
+  .b-sign-up-panel
+    .nav
+      padding-left: 5px
+      padding-right: 5px
+      margin-right: 0
+
+    .nav a
+      color: $sign_up_panel_text_color
+      text-decoration: underline
+      line-height: $sign_up_panel_height
+
+      &:hover
+        text-decoration: none
+
+    .nav .b-button
+      +disable-decoration
+
+    .b-home-button
+      margin: 18px 20px 0 0
+      a
+        line-height: 0
+      .b-icon-home
+        +icon('home.png')
+
+    .b-tell-a-friend
+      padding-left: 23px
+      padding-right: 23px
+      border-right: 1px solid $sign_up_panel_delimiters_color
+      border-left: 1px solid $sign_up_panel_delimiters_color
+      a
+        line-height: $sign_up_panel_delimiters_height
+      margin-top: ($sign_up_panel_height - $sign_up_panel_delimiters_height) / 2
+      margin-bottom: ($sign_up_panel_height - $sign_up_panel_delimiters_height) / 2
+
+    .b-sign-up-for-tips
+      margin-left: 16px
+      a
+        +disable-decoration
+      span
+        text-decoration: underline
+        &:hover
+          text-decoration: none
+      .b-mail-icon
+        padding-right: 10px
+      i
+        padding-right: 5px
+
+    .b-sign-links
+      width: 140px
+      background-color: $sign_links_background_color
+      padding: 0
+      text-align: center
+      a
+        margin-left: 10px
+        margin-right: 10px
+
+    .b-social-links
+      .b-button
+        margin-left: 4px
+        margin-right: 4px
+
+    .l-search-bar
+      border-left: 1px solid $sign_up_panel_delimiters_color
+      margin-top: ($sign_up_panel_height - $sign_up_panel_delimiters_height) / 2
+      margin-bottom: ($sign_up_panel_height - $sign_up_panel_delimiters_height) / 2
+      height: $sign_up_panel_delimiters_height
+      padding-right: 0
+      padding-left: 32px
+
+      .b-search-bar
+        margin-top: 7px
+

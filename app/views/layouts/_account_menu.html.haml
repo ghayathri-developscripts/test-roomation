@@ -1,0 +1,11 @@
+- if user_signed_in?
+  - if current_user.is_role? :designer
+    = link_to "Profile", designer_info_path(current_user)
+  - elsif current_user.is_role? :user
+    = link_to "Profile", customer_path(current_user)
+  - else
+    = link_to 'Admin', '/admin'
+  = link_to 'Logout', destroy_user_session_path, :method => :delete
+- else 
+  = link_to 'Sign up', '#sign-up', 'data-toggle' => :modal
+  = link_to 'Sign in', '#sign-in', 'data-toggle' => :modal

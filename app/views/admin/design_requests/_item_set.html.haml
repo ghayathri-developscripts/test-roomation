@@ -1,0 +1,6 @@
+- if collection.present?
+  .items
+    - collection.each do |item|
+      = render 'room_item', :item => item
+- else
+  = '-'

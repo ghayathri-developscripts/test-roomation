@@ -1,0 +1,27 @@
+%center
+  -if @designers
+    %h2
+      My designers  
+    %table 
+      %tr
+        %th
+          Desginer name
+        %th
+          Albums(images) quantity                 
+      -@designers.each do |designer|
+        %tr
+          %td
+            =link_to designer.full_name, "/designers/#{designer.id}"
+          %td{:align=>"center"}   
+            ="#{designer.albums.count} (#{designer.images.count})"    
+  -elsif current_user && current_user.user_request
+    %b{:style=>"color:black;"}
+      Please wait, while administrator assigned some designers to you.     
+  -else
+    %b{:style=>"color:black;"}
+      Please fill in your questionary and send request to assign designers to you
+    %div{:style=>"padding-bottom:100px;"}
+      
+    
+-if current_admin
+  =will_paginate(@designers)          

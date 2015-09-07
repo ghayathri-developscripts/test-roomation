@@ -1,0 +1,33 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+  activerecord:
+    attributes:
+      style_poll:
+        base: ''
+      room:
+        fabric: "Fabrics"
+        wood_type: "Wood type"
+        arts: "Arts"
+        furnitures: "Furnitures"
+        shops: "Shops"
+        color_set: "Color set"
+        photo_albums:
+          photos: "Your room section"
+      user:
+        terms_agreement: "Terms of Use and Privacy Policy"
+    state_machines:
+      design_request: # model name
+        step: # machine name
+          states:
+            level_of_guidance: "Choose your plan"
+            style_assessment:  "Style Assessment"
+            style_assessment_results: "Style Assessment"
+            my_room:           "My Room"          
+            my_room_continued: "My Room" 
+            choose_designer:   "Choose Designer"
+            registration:      "Checkout"
+            checkout:          "Checkout"
+          events: # you can also define translations for the events

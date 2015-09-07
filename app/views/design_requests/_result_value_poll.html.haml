@@ -1,0 +1,21 @@
+%h1.orange-title.bold Upload related images (optional)
+- @design_request.room.photo_albums.each_with_index do |album, index|
+  = room.fields_for :photo_albums, album do |album_form|
+    = album_form.input :name, :as => :hidden              
+    = #album_form.input :description, :as => :hidden
+    .box.top-40
+      %div{ :id => "album_photos_#{index}" }
+        = album_form.fields_for :photos do |photo|
+          - unless photo.object.image_cache
+            = photo.file_field :image
+            = photo.hidden_field :image_cache 
+          - else
+            .room_album_image
+              = image_tag photo.object.image.thumb 
+              = photo.hidden_field :image_cache
+              = link_to 'delete', "#", :class => "b-gray-button photo_deleter"
+          
+    = link_to 'Upload images', '#', :class => "b-gray-button album_#{index}"
+
+:javascript
+    $.helpers.initialize_photos_uploading()

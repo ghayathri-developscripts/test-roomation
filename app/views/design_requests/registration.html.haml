@@ -1,0 +1,22 @@
+= render :layout  => 'common_layout' do |f|
+  %div{:id => "step8"}
+  .divider
+    %hr
+  .box
+    %h1.step-title  PLEASE REGISTER
+    %p
+      You need to be logged in to continue. Please
+      = link_to 'sign in', '#sign-in', 'data-toggle' => :modal
+      to your account or 
+      = link_to 'sign up', '#sign-up', 'data-toggle' => :modal
+      \.
+  .divider
+    %hr
+
+  :javascript
+    $(function(){
+      $('.project_forward_link').click(function(event) {
+        event.preventDefault()
+        $('.desing_request_registration').submit()
+      })
+    })

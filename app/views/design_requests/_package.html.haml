@@ -1,0 +1,16 @@
+%td.radio_box_align
+  = f.radio_button :package_id, package.id
+- if package.title.eql?('Design Advice')
+  %td
+    .radbut 
+      = package.title
+    .txtgray
+      %strike $#{package.price}
+      &nbsp;free
+- else
+  %td
+    .radbut 
+      = package.title
+    .txtgray
+      $#{package.price}
+    

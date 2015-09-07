@@ -1,0 +1,76 @@
+%table
+  %col(width="150")
+  - if room.blank?
+    %tr
+      %td
+      %td
+        "Not provided"
+  - else
+    %tr
+      %td
+        Title
+      %td
+        = room.title
+    %tr
+      %td
+        Room is used for
+      %td
+        = room.used_for
+    %tr
+      %td
+        Room size
+      %td
+        = room.room_size
+    %tr
+      %td
+        Windows
+      %td
+        = room.windows
+      - if room.photo_albums.present?
+        - room.photo_albums.each do |album|
+          %tr
+            %td
+              = album.name
+            %td.room-images
+              - album.photos.each do |photo|
+                .img
+                  = image_tag photo.image.url
+
+    %tr
+      %td
+        Preferred colors
+      %td
+        = render 'room_item', item: room.color_set
+    %tr
+      %td
+        Rejected colors
+      %td
+        = room.rejected_colors
+    %tr
+      %td
+        Preferred wood type
+      %td
+        = render 'room_item', item: room.wood_type
+    %tr
+      %td
+        Preferred fabrics
+      %td
+        = render 'room_item', item: room.fabric
+    %tr
+      %td
+        Type of arts
+      %td
+        = render 'item_set', collection: room.arts
+    %tr
+      %td
+        Preferred materials
+      %td
+        = render 'item_set', collection: room.furnitures
+    %tr
+      %td
+        Shops
+      %td
+        - rooms = room.shops.map{|shop| shop.title}.join(', ')
+        - [rooms, room.custom_shops].join(', ') if room.custom_shops.present?
+        = rooms
+  

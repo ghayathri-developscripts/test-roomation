@@ -1,0 +1,4 @@
+.b-search-bar
+  = simple_form_for :query do |f|
+    = f.input_field :query, :name => :query, :type => :search, :placeholder => 'Search'
+    %i.b-icon.b-search-icon

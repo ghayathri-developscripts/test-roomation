@@ -1,0 +1,31 @@
+// Active Admin CSS Styles
+@import "active_admin/mixins";
+@import "active_admin/base";
+@import "admin/design_request";
+@import "admin/style_quiz_results";
+
+// To customize the Active Admin interfaces, add your
+// styles here:
+
+
+form fieldset ol > li label {
+	 width: 7%;
+}
+
+form input[type="text"] {
+	width: 20%;
+}
+
+.ckeditor_style {
+	margin-left: 96px;
+    width: 632px;
+}
+
+div.ckeditor_style li#gallery_client_profile_input.ckeditor.input.optional label.label {
+	margin-left: -85px;
+	color: #5e6469;
+    display: block;
+    float: left;
+    font-size: 1em;
+    font-weight: bold;
+}

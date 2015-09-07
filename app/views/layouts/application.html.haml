@@ -1,0 +1,25 @@
+!!! 5
+%html
+  %head
+    %title= page_title
+    - if content_for? :for_gallery
+      = yield :for_gallery
+    - else
+      %meta{:name => 'description', :content => page_title}
+      %meta{property: "fb:app_id", content: "1514453178784662"}
+    = render "layouts/facebook_analytics"
+    = stylesheet_link_tag :application
+    = javascript_include_tag :application
+    = javascript_include_tag "zoomsl-3.0.min"
+    = javascript_include_tag "jquery.sharrre"
+    = csrf_meta_tags
+    = render "layouts/analytics"
+  %body{ :class => page_dom_class }
+    .container.l-content
+      %header.l-header= render 'layouts/header'
+      %article.b-content
+        = render 'shared/flash_messages'
+        = yield
+      %footer.l-footer= render 'layouts/footer'
+  -#face_img.take(4).each do |photo|
+    %meta{content: photo.url, property: "og:image"}

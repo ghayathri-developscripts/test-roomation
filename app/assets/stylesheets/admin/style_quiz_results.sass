@@ -1,0 +1,32 @@
+$quiz-width: 600px
+#quiz-result
+  width: 750px
+  h1
+    font-size: 36px
+    line-height: 55px
+  .first-description, .second-description
+    p
+      padding-top: 5px
+  .first-description
+    width: 380px
+    padding-right: 10px
+    float: left
+  .second-description
+    width: 650px
+  .color-hint
+    font-size: 16px
+  .images
+    padding-top: 5px
+    display: inline-block
+    width: 270px
+    img
+      width: 120px
+      height: 120px
+      padding: 0 10px 10px 0
+
+$quiz-result-width: 690px
+.quiz-result
+  width: $quiz-result-width
+  margin-left: -($quiz-result-width/2)
+  &.fade.in
+    top: 35%

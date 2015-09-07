@@ -1,0 +1,132 @@
+$quiz-width: 600px
+#quiz
+  width: $quiz-width
+  a
+    +dark-blue-links
+    pointer-events: none
+    cursor: default
+  
+  #quiz-questions
+    position: relative
+    .questions-container
+      margin: 0px auto
+      width: 547px
+      vertical-align: middle
+      .question
+        .question-group
+          height: 395px
+          display: table-cell
+          vertical-align: middle
+
+  .image-block
+    padding: 10px
+    float: left
+    &:first-child
+      padding-right: 5px
+    
+    input
+      display: none
+    img
+      width: 250px
+      
+    .decorator
+      padding: 3px
+      position: relative
+      line-height: 0
+
+  .description
+    +font-family-verdana
+    text-align: center
+    font-size: 15px
+
+#quiz-prompt
+  h1
+    font-size: 45px
+    color: $vermilion
+    width: 400px
+    line-height: 55px
+    margin: 0 auto
+    text-align: center
+    +shadow-vermilion
+  .images
+    margin: 0 auto
+    width: 475px
+    padding: 20px 0
+    +clearfix
+    img
+      padding-left: 10px
+      float: left
+      &:first-child
+        padding-left: 0
+        
+  .prompt
+    width: 112px
+    margin: 0 auto
+
+#quiz-reveal
+  a
+    +dark-blue-links
+  h1
+    +font-family-verdana
+    font-size: 36px
+    color: $vermilion
+    line-height: 55px
+    +shadow-vermilion
+  .join-prompt
+    font-size: 15px
+    +font-family-verdana
+  .join-box
+    width: 300px
+    margin: 0 auto
+  .submit
+    margin-left: 150px
+  form
+    margin-top: 10px
+
+#quiz-result
+  h1
+    font-size: 36px
+    color: $vermilion
+    line-height: 55px
+    +shadow-vermilion
+  .first-description, .second-description
+    p
+      padding-top: 5px
+  .first-description
+    width: 380px
+    padding-right: 10px
+    float: left
+  .second-description
+    width: 650px
+  .images
+    padding-top: 5px
+    display: inline-block
+    width: 270px
+    img
+      width: 120px
+      height: 120px
+      padding: 0 10px 10px 0
+  .color-hint
+    font-size: 16px
+    color: $vermilion
+
+/* modal style*/
+$quiz-modal-width: $quiz-width + 30
+.quiz
+  max-height: 800px !important
+  width: $quiz-modal-width
+  margin-left: -($quiz-modal-width/2)
+  .modal-body
+    max-height: 800px
+
+$quiz-result-width: 690px
+.quiz-result
+  width: $quiz-result-width
+  margin-left: -($quiz-result-width/2)
+  &.fade.in
+    top: 35%
+  
+$quiz-reveal-width: 550px
+.quiz-reveal
+  width: $quiz-reveal-width
+  margin-left: -($quiz-reveal-width/2)

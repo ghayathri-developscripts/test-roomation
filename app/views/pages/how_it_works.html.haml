@@ -1,0 +1,26 @@
+#how_it_works
+  %hr
+  .right-block
+    %h1.no-pad-top How It Works
+    %p From the convenience of your home, spend half the time and a fraction of the cost of a traditional interior design service.
+    %hr.black
+    %h1.title.no-pad-top Design Advice
+    %p Get the answer to that one burning interior design question that you just can't solve! Customers in the past have asked things like "what's the perfect couch for my room" or "help me find the right piece of artwork" or "help me choose paint!" A designer will share their expertise and answer your question via email.
+    -#%p For $20 a month, ask unlimited questions about your room to our panel of designers. <br/>Feel free to upload pictures of your room or inspiration you have!
+    %h1.no-pad-bottom.title Style Boards and Room Designs
+    %p.subtitle Follow our simple 3-step process:
+    .style_board
+      #tell-us.left-pic
+      %h1.title Tell us about your project.
+      %p Answer questions about your style, total project budget, how you’lluse your new space, favorite retailers, material choices,measurements and room limitations. Choose your designer and they will automatically receive all your information! No hasslemanaging interior design appointments.
+    .style_board
+      #review.left-pic
+      %h1.title Review Your Style Board.
+      %p Based on your project details, our designers will put together a styleboard that represents your tastes and potential products for your room. If you purchase more than one concept, you will receive boards from different designers. Choose your favorite one and that designer will create your final room design and shopping list.
+    .style_board.bottom-40
+      #get-room.left-pic
+      %h1.title Get Your 3D Room Design and Shopping List.
+      %p You’ll receive your customized 3D room design with views from two angles, along with a shopping list of all the items in the room and where to purchase them. 10 business day turnaround. Get your room FINISHED!
+    %hr.black
+      =link_to 'See pricing', '/pricing', :class => "b-orange-button b-start-project-button"
+      =link_to 'Get Started', new_design_request_path, :class => "b-orange-button b-start-project-button"

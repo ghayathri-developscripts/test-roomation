@@ -1,0 +1,13 @@
+.DS_Store
+.bundle
+db/*.sqlite3
+config/database.yml
+log/*.log
+tmp/
+.sass-cache/
+public/uploads/
+public/avatars/
+public/questions/
+.idea
+.project
+tags

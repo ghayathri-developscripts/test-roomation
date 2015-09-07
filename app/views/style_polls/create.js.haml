@@ -1,0 +1,6 @@
+- if user_signed_in?
+  :plain
+    $.style_quiz.updateQuizContent('Your style is', "#{escape_javascript(render 'quiz_result', locals: { style_poll: current_user.style_poll } )}");
+- else
+  :plain
+    $.style_quiz.updateQuizContent('Get quiz results', "#{escape_javascript(render 'style_polls/quiz_reveal')}", "quiz-reveal");

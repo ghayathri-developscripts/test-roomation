@@ -1,0 +1,16 @@
+#get_started
+  %hr
+  .right-block
+    .box
+      %h1.title
+        = step_header @project.current_step
+      - if @project.first_step?
+        = render 'moneyback'
+        %p#start-dream Start your dream today! If at any point you want to take a break, just click "Save to continue later" and we'll pick up right where you left off. Choose from the following options:
+
+    = render 'graphical_state', :current_step => @project.current_step_num
+
+    .divider
+      %hr
+
+    = render 'form', :project => @project

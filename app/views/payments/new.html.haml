@@ -1,0 +1,36 @@
+#get_started
+  .right-block
+    .box
+      %h1.title
+        = "Level: #{@design_request.package.title} ( $#{@amount} )"
+  - if @result 
+    - @result.errors.each do |error| 
+      = "Error code: #{error.code}, Error message: #{error.message}"
+
+  = simple_form_for :transaction, params: @result && @result.params[:transaction], url: Braintree::TransparentRedirect.url, html: { autocomplete: "off" } do |f|
+    %h1.step-title
+      = "Customer"
+    .right-block
+      .box
+        = f.simple_fields_for :customer do |c| 
+          = c.label :first_name, "First Name: #{current_user.first_name}"
+          = c.label :last_name, "Last Name: #{current_user.last_name}"
+          = c.label :email, "Email: #{current_user.email}"
+    %h1.step-title
+      = "Credit Card"
+    .right-block
+      .box
+        = f.simple_fields_for :credit_card do |c|
+          = c.label :number, "Number"
+          = c.text_field :number
+          = c.label :expiration_date, "Expiration Date (MM/YYYY)"
+          = c.text_field :expiration_date
+          = c.label :cvv, "CVV"
+          = c.text_field :cvv
+    = hidden_field_tag :tr_data, @tr_data
+    .right-block
+      .box
+        = f.submit "Submit", class: "btn btn-primary"
+  #secure_checkout
+    = "secure checkout"
+    = image_tag asset_path('icons/secure_checkout.png')

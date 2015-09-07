@@ -1,0 +1,38 @@
+#save_and_continue.modal.fade
+  = simple_form_for(:reveal, :url => remember_design_request_path(@design_request), :remote => true) do |f|
+    .modal-header
+      = link_to 'x', nil, :class => 'close', 'data-dismiss' => 'modal'
+      %h3#save_and_continue_title
+        Save your design  
+    #save_design_body.modal-body
+      .b-errors-wrap
+        .save-design-errors.b-error.alert.alert-error.hide
+      %p
+        You can save your design and continue it at another time. We will send you email with link to this design. 
+        Just click it and you will be redirected back to the step, where you stopped.
+      - unless user_signed_in?
+        .unsigner_user_content
+          %p
+            To use this function you need to 
+            = link_to 'sign up', '#sign-up', 'data-toggle' => :modal, :id => 'sign_up_from_save_and_continue'
+            to your account or 
+            = link_to 'sign in', '#sign-in', 'data-toggle' => :modal, :id => 'sign_in_from_save_and_continue'
+            \.
+          %p
+            Or just fill in your email and name
+            = f.input_field :name, :label => false, :placeholder => 'name'
+            = f.input_field :email, :label => false, :placeholder => 'email'
+    .modal-footer
+      = link_to 'Close', nil, :class => 'btn', 'data-dismiss' => 'modal'
+      = f.submit 'Save design', :class => 'btn btn-primary', :id => 'save_design_submit'
+
+  :javascript
+    $('#sign_in_from_save_and_continue').click(function() {
+      $('#save_and_continue').modal('hide')
+      $("#login-form").append('<input type="hidden" name="save_and_continue" value="true" />')
+    })
+
+    $('#sign_up_from_save_and_continue').click(function() {
+      $('#save_and_continue').modal('hide')
+      $("#sign-up-form div.b-login-form").append('<input type="hidden" name="save_and_continue" value="true" />')
+    })

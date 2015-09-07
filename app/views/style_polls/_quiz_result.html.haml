@@ -1,0 +1,32 @@
+- unless defined? style_poll
+  - style_poll = current_style_poll
+#quiz-result
+  - if style_poll and style_poll.style_quiz_result
+    %h1
+      = "#{style_poll.style_quiz_result.name}"
+    %div
+      .first-description
+        - style_poll.style_quiz_result.style_description.split("\n").each do |paragraph|
+          %p
+            = "#{paragraph}"
+      .images
+        - style_poll_images(style_poll).take(4).each do |photo|
+          = image_tag photo.url
+    .color-line
+      = image_tag style_poll.color_quiz_result.color_spectrum.url
+    .second-description
+      - style_poll.color_quiz_result.color_description.split("\n").each do |paragraph|
+        %p
+          = "#{paragraph}"
+  #fb-root{:style=>"float:right"}
+    - if user_signed_in?
+      %a{:href => "http://www.facebook.com/sharer.php?app_id=1514453178784662&sdk=joey&u=http://www.roomations.com/share/show/#{current_user.id}", :onclick => "window.open(this.href, 'mywin',\n'left=40,top=50,width=500,height=500,toolbar=1,resizable=0'); return false;"}
+        = image_tag 'fshare.png', :alt => "Facebook"
+    - else
+      %a{:href => "http://www.facebook.com/sharer.php?app_id=1514453178784662&sdk=joey&u=http://www.roomations.com/share/show/#{StylePoll.last.id}", :onclick => "window.open(this.href, 'mywin',\n'left=40,top=50,width=500,height=500,toolbar=1,resizable=0'); return false;"}
+        = image_tag 'fshare.png', :alt => "Facebook"
+:javascript
+  $(function(){
+    $("#quizModal").removeClass('quiz-reveal');
+    $("#quizModal").addClass('quiz quiz-result');
+  });

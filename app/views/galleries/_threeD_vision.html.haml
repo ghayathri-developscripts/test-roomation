@@ -1,0 +1,272 @@
+- content_for :for_gallery do
+  %meta{:content => gallery.title, :property => "og:title"}
+  %meta{:content => "Designed by #{gallery.designer.full_name}", :property => "og:description"}
+  %meta{:content => "Designed by #{gallery.designer.full_name}", :property => "og:url"}
+  %meta{:content => "http://roomations.com/gallery/#{gallery.id}", :property => "og:url"}
+:css
+  .b-content {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+  }
+  .l-footer {
+    margin-top: 0 !important;
+  }
+#gallery-threeD
+  %hr
+    .container.l-content
+      / Project Title
+      .page-header
+        %h1= gallery.title
+        %h2
+          %small.sub_header
+            by&nbsp;#{gallery.designer.full_name}
+      / Main Style Board
+      .row
+        %div
+          - if albums.present?
+            - first_image = albums.first
+            = image_tag first_image.image, :style => "width:100%;"
+      / Slider and customer comments
+      .row.client_comment
+        %div
+          .span6
+            %p.myclass= gallery.comment
+            %br
+              %br
+                %p.font_family
+                  Share this Project
+                  %br
+                  .social_media
+                    .span0
+                      #facebook_share
+                        %a{:href => "https://www.facebook.com/sharer/sharer.php?sdk=joey&u=http://roomations.com/gallery/#{gallery.id}&display=popup&ref=plugin&", :onclick => "window.open(this.href, 'mywin',\n'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"} 
+                          %image{:src => "/assets/icons/fb.png"}/
+                        %br
+                          %br
+                    .span1
+                      #custom-tweet-button
+                        %a{:href => "https://twitter.com/intent/tweet?url=http://roomations.com/gallery/#{gallery.id}&text=#{gallery.title}&via=roomations&hashtags=interiordesign"}
+                          %image{:src => "/assets/icons/twitt.png"}/
+                        %br
+                          %br
+                    .span0
+                    #pininterest_share
+                      %a{:href => "https://www.pinterest.com/pin/create/button/?url=http://roomations.com/gallery/#{gallery.id}&media=http://roomations.com/#{gallery.project_albums.first.image}&description=#{gallery.title}"}
+                        %image{:src => "/assets/icons/fb.png"}/
+                      %br
+                        %br
+
+          .span7
+            / Carousel items
+            #myCarousel.carousel.slide
+              %ol.carousel-indicators
+                - albums.each_with_index do |album, index|
+                  - if index == 0
+                    %li.active{"data-slide-to" => "#{index}", "data-target" => "#myCarousel"}
+                  - else
+                    %li{"data-slide-to" => "#{index}", "data-target" => "#myCarousel"}
+              .carousel-inner
+                - albums.each_with_index do |album, index|
+                  - if index == 0
+                    .active.item.thumbnail{"data-slide-no" => "#{index}"}= image_tag(album.image.thumb)
+                  - else
+                    .item.thumbnail{"data-slide-no" => "#{index}"}= image_tag(album.image.thumb)
+              / Carousel nav
+              %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} &lsaquo;
+              %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} &rsaquo;
+      / About thi project
+      .row-fluid.about
+        .span7
+          .about_project
+            %h1 About this Project
+            %p.font_family= raw(gallery.about_project)
+        .span5.client-details
+          / <img src="/assets/icons/ipad.png" class="ipad">
+          .client-content
+            - if gallery.style.present?
+              .main-head Style
+              .sub-head= gallery.style
+            %br
+              - if gallery.style.present?
+                .main-head Room
+                .sub-head= gallery.sub_category_name
+              %br
+                - if gallery.plan_type.present?
+                  .main-head Plan
+                  .sub-head= gallery.plan_type
+                %br
+                  - if gallery.budget.present?
+                    .main-head Budget
+                    .sub-head
+                      $ #{gallery.budget}
+                  %br
+                    - if gallery.location.present?
+                      .main-head Location
+                      .sub-head= gallery.location
+                    %br
+      / Featured Projects
+      - if products.present?
+        .row.featured-product
+          .span12
+            .header
+              %h1{:style => "color:white"} Featured Products
+            .span12
+              #featured_products.carousel.slide
+                / Carousel items
+                .carousel-inner
+                  - products.each_with_index do |product, index|
+                    - if index == 0
+                      .item.active
+                        .row-fluid
+                          - product.each do |gallery|
+                            .span3.product.link_to{data: {:url => "#{gallery.description}"} }
+                              %a{:href => "javascript:void(0)"}
+                                = image_tag gallery.image.slider_thumb, style: "max-width:100%;"
+                              .description
+                                = gallery.name if gallery.name.present?
+                                %p.store_name= gallery.store_name if gallery.store_name.present?
+                                - if gallery.price.present?
+                                  $#{gallery.price}
+                    - else
+                      .item
+                        .row-fluid
+                          - product.each do |gallery|
+                            .span3.product.link_to{data: {:url => "#{gallery.description}"} }
+                              %a{:href => "javascript:void(0)"}
+                                = image_tag gallery.image.slider_thumb, style: "max-width:100%;"
+                              .description
+                                = gallery.name if gallery.name.present?
+                                %p.store_name= gallery.store_name if gallery.store_name.present?
+                                - if gallery.price.present?
+                                  $#{gallery.price}
+                / /carousel-inner
+                - if products.count > 1
+                  %a.left.carousel-control{"data-slide" => "prev", :href => "#featured_products"} ‹
+                  %a.right.carousel-control{"data-slide" => "next", :href => "#featured_products"} ›
+              / /myCarousel
+      - else
+        %br
+      / Before Image and After Image
+      .row-fluid.before_after
+        .span5
+          .page-header{:align => "center"}
+            %h2 Before
+          .thumbnail
+            = image_tag gallery.before_image.thumb
+        .span5
+          .page-header{:align => "center"}
+            %h2 After
+          .thumbnail
+            = image_tag gallery.after_image.thumb
+      / More Rooms by Designer
+      - if other_galleries.present?
+        .row.other_projects
+          .span12
+            .header
+              %h1 More rooms by this designer
+            .span12
+              #design_gallery.carousel.slide
+                .carousel-inner
+                  - other_galleries.each_with_index do |gallery, index|
+                    - if index == 0
+                      .item.active
+                        .row-fluid
+                          - gallery.each do |gallery|
+                            - @album = gallery.project_albums.first
+                            .span3
+                              = link_to(image_tag(@album.image.small_thumb, style: "max-width:100%;"), show_path(gallery.id))
+                              .title= gallery.title
+                              .sub-title
+                                = gallery.sub_category_name
+                                in&nbsp;#{gallery.location}
+                    - else
+                      .item
+                        .row-fluid
+                          - gallery.each do |gallery|
+                            - @album = gallery.project_albums.first
+                            .span3
+                              = link_to(image_tag(@album.image.small_thumb, style: "max-width:100%;"), show_path(gallery.id))
+                              .title= gallery.title
+                              .sub-title
+                                = gallery.sub_category_name
+                                in&nbsp;#{gallery.location}
+                - if other_galleries.count >  1
+                  %a.left.carousel-control{"data-slide" => "prev", :href => "#design_gallery"} ‹
+                  %a.right.carousel-control{"data-slide" => "next", :href => "#design_gallery"} ›
+      - else
+        %br
+      - if sub_galleries.present?
+        .see_more
+          .header
+            %h1
+              See More #{gallery.sub_category_name}
+          .span12{:style => "margin-left: 39px; margin-right: 60px;"}
+            #sub_gallery.carousel.slide
+              / Carousel items
+              .carousel-inner
+                - sub_galleries.each_with_index do |gallery, index|
+                  - if index == 0
+                    .item.active
+                      .row-fluid
+                        - gallery.each do |gallery|
+                          - @album = gallery.project_albums.first
+                          .span3
+                            = link_to(image_tag(@album.image.small_thumb, style: "max-width:100%;"), show_path(gallery.id))
+                            .title= gallery.title
+                            .sub-title
+                              = gallery.sub_category_name
+                              in&nbsp;#{gallery.location}
+                  - else
+                    .item
+                      .row-fluid
+                        - gallery.each do |gallery|
+                          - @album = gallery.project_albums.first
+                          .span3
+                            = link_to(image_tag(@album.image.small_thumb, style: "max-width:100%;"), show_path(gallery.id))
+                            .title= gallery.title
+                            .sub-title
+                              = gallery.sub_category_name
+                              in&nbsp;#{gallery.location}
+              / /carousel-inner
+              - if sub_galleries.count > 1
+                %a.left.carousel-control{"data-slide" => "prev", :href => "#sub_gallery"} ‹
+                %a.right.carousel-control{"data-slide" => "next", :href => "#sub_gallery"} ›
+            / /myCarousel
+    :javascript
+      $(document).ready(function() {
+        $('#sub_gallery').carousel({
+          interval: 10000
+        });
+        $('#myCarousel').on('slid', function() {
+            var to_slide = $('.item.active').attr('data-slide-no');
+            $('.myCarousel.active').removeClass('active');
+            $('.carousel-indicators [data-slide-to=' + to_slide + ']').addClass('active');
+        });
+        $('.myCarousel').on('click', function() {
+            $('#myCarousel').carousel(parseInt($(this).attr('data-slide-to')));
+            $('.myCarousel.active').removeClass('active');
+            $(this).addClass('active');
+        });
+        $('#other_galleries').carousel({
+          interval: 10000
+        });
+        $('#featured_products').carousel({
+          interval: 10000
+        });
+        $('.myclass').find('.twitter-share-button').css('padding','12px 12px 10px 69px');
+        $('.link_to').click(function(e){
+          var href = $(this).data('url');
+          var banner_url = href;
+           if (banner_url && !banner_url.match(/^http([s]?):\/\/.*/)) {
+             banner_url = 'http://' + banner_url;
+           }
+          win = window.open(banner_url,'_blank');
+          if(win){
+           //Browser has allowed it to be opened
+           win.focus();
+          }else{
+           //Broswer has blocked it
+           alert('Please allow popups for this site');
+          }
+        });
+      });

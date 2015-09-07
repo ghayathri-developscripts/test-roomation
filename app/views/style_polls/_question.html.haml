@@ -1,0 +1,7 @@
+%li.question
+  .question-group
+    - group.each_with_index do |question, index|
+      .image-block
+        .decorator{:id  => "decorator#{question.id}"}
+          = image_tag question.photo.url, :class  => 'quiz-image'
+          = check_box_tag 'design_request[style_poll_attributes][question_ids][]', question.id, question_answered?(question), {:group  => group_id}

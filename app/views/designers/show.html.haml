@@ -1,0 +1,43 @@
+%h1
+  =@designer.full_name 
+  %br
+  %h4{:style=>"margin-top:-20px;"}
+    albums(images) quantity
+%table
+  -current_height = current_admin ? "60px;" : "80px;"
+  -@designer.albums.in_groups_of(3).each do |albums|
+    %tr
+      -albums.each do |album|
+        %td{:valign=>"top", :align=>"center"}
+          -if album 
+            %h3
+              =link_to "#{album.name} (#{album.images.count})", "/designer_album/#{album.id}"
+            -if album.description && album.description.length > 110
+              %div{:id=>"text_small_#{album.id}",:style=>"height:#{current_height} width:200px;border: 1px double black;",:align=>"left"}
+                = truncate(album.description, :length => 110)
+                %a{:href=>"javascript:void(0)", :onclick=>"$('#text_small_#{album.id}').hide();$('#text_#{album.id}').show();"}
+                  show               
+              %div{:id=>"text_#{album.id}", :style=>"display:none;width:200px;",:align=>"left"}
+                = album.description
+                %a{:href=>"javascript:void(0)", :onclick=>"$('#text_small_#{album.id}').show();$('#text_#{album.id}').hide();"}
+                  hide           
+            -elsif album.description && album.description.length <= 110
+              %div{:style=>"height:#{current_height}width:200px;",:align=>"left"}
+                =album.description
+            -else
+              No description
+              %div{:style=>"padding:40px;"}    
+            -if album.images.count > 0
+              %a{:href=>"/albums/customer_show/#{album.id}"}
+                =image_tag album.images.first.picture.thumb.url
+            -else
+              %b
+                No Pictures
+                %br
+                in this Album yet
+            -if current_admin
+              %br
+              =link_to "remove album", "/albums/delete/#{album.id}", :remote=>true, :confirmation=>"Are you shure?"            
+        %td{:width=>30}
+          &nbsp;          
+=link_to "Back", "#{current_admin ? '/designers_list' : '/designers'}"  

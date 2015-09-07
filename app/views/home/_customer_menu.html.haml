@@ -1,0 +1,48 @@
+%style
+  td.designers_columns{
+  width:150px;
+  float:center;      
+  }
+%center
+  %h2
+    Cabinet    
+  %table
+    %tr
+      %td
+        =link_to "My Questionnaire","#"
+    -if !current_user.available_designers
+      %tr
+        %td    
+          =link_to "Request for desginers assign","/user_requests/new/#{current_user.id}"    
+  
+  -if current_user.available_designers && current_user.available_designers.count > 0
+    %h3="Designers, assigned to me:"
+    %table
+      %tr
+        %td
+          %table
+            %td.designers_columns
+              Desginer name
+            %td.designers_columns
+              Albums quantity
+            %td.designers_columns
+              Images quantity 
+      -current_user.designers.each do |designer|                         
+        %tr
+          %td
+            %table              
+              %tr
+                %td{:align=>"left", :class=>"designers_columns"}
+                  %b
+                    =link_to designer.full_name , "/designers/#{designer.id}" 
+                %td.designers_columns
+                  %b
+                    =designer.albums.count
+                %td.designers_columns
+                  %b
+                    =designer.images.count  
+  -elsif current_user.user_request
+    Please wait, while administrator assigned some designers to you.  
+  -else
+    No designers assigned to you, send request assign designers  
+

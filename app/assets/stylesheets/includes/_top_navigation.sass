@@ -1,0 +1,23 @@
+.l-top-navigation
+  +clearfix
+  margin: 0
+  display: inline-block
+
+  .b-top-navigation
+    font-size: 14px
+
+    li
+      a
+        color: $top_navigation_item_color
+        &:hover
+          text-decoration: underline
+          color: $top_navigation_item_color
+        padding-top: 3px
+        padding-bottom: 3px
+        margin: 0 14px
+
+      &.b-menu-item
+        border-right: 1px solid $top_navigation_delimiters_color
+      &.b-first-item
+      &.b-last-item
+        border: none

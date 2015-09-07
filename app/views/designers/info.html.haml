@@ -1,0 +1,108 @@
+#designer-profile
+  .left-block
+    = link_to 'Projects', "#projects"
+    = link_to 'Profile', "#profile"
+    = link_to 'Portfolio', "#portfolio"
+    = link_to 'Payment Info', "#payment-info"
+    = link_to 'Resources', "#resources"
+    
+  .right-block
+    %h1 GreenMachine
+    %p Member since January 12, 2012
+    
+    %hr
+    .profile-settings-block
+      .profile-settings
+        = check_box_tag 'terms'
+        Agree to our 
+        = link_to 'Independent Contractor Agreement', contractor_agreement_path, :class  => "terms-window"
+      .profile-settings
+        = check_box_tag 'is_hidden'
+        Temporarily hide profile from prospective clients
+    
+    %hr
+    #projects.profile-section
+      %h2.section-title
+        Projects
+      %table.three-column-table
+        %tr
+          %th.td35 Project name
+          %th.td35 Project status
+          %th.td30 Messages
+        - 5.times do |i|
+          %tr
+            %td Project##{i}
+            %td in design
+            %td Message##{i}
+    
+    %hr
+    #profile.profile-section
+      %h2.section-title
+        Profile
+      .left-section
+        .box
+          %form
+            %input{:type => "text", :name => 'first_name', :placeholder  => 'Screen name'}
+            %input{:type => "text", :name => 'email', "type" => "email", :placeholder  => 'Email'}
+            %p
+              %strong About you. 
+              Write short (250 characters max.) paragraph, describing yourself.  
+              This is what customers will see when viewing your profile.
+            %textarea{:rows => 5, :name => 'about', "required" => "required"}
+        = link_to 'Save', '#', :class => 'b-orange-button b-button'
+        = link_to 'Edit', '#', :class => 'b-gray-button b-button'
+      .right-section
+        .box
+          .rating
+            %span Your current rating
+            = image_tag 'steps/step4-rating-stars.png'
+          = link_to 'Your current reviews', '#'
+          %form.password-form
+            %p.bold Change your password
+            = text_field_tag :old_password, nil, :placeholder => 'Old password'
+            = text_field_tag :new_password, nil, :placeholder => 'New password'
+            = text_field_tag :new_password_confirmation, nil, :placeholder => 'Confirm new password'
+        = link_to 'Set', '#', :class => 'b-orange-button b-button'
+    
+    %hr
+    #portfolio.profile-section
+      %h2.section-title
+        Portfolio
+      %p 
+        Upload your main profile
+        = link_to 'image', '#'
+      = render 'portfolio_image', :index  => 0
+      %p 
+        Upload 
+        = link_to 'images', '#'
+        of your projects and write (optional) a brief description
+      .images
+        - 6.times do |i|
+          = render 'portfolio_image', :index  => i+1
+      = link_to 'Save', '#', :class => 'b-orange-button b-button'
+      = link_to 'Edit', '#', :class => 'b-gray-button b-button'
+    
+    %hr
+    #payment-info.profile-section
+      %h2.section-title
+        Payment info
+      = simple_form_for(:user, :as => :user, :url => '#', :html  => {:class => 'form-horizontal'}) do |f|
+        %p Enter your PayPal email address to be paid electronically
+        = f.input :email_pay_pal, :label  => false, :input_html  => {:class  => "textfield-270px"}, :placeholder => 'Email address', :label_html  => {:class => 'left-label'}
+        %p If you would like to be paid via check, please enter your address:
+        = f.input :street_address_1, :label_html  => {:class => 'left-label'}, :input_html  => {:class  => "input-medium"}
+        = f.input :street_address_2, :label_html  => {:class => 'left-label'}, :input_html  => {:class  => "input-medium"}
+        = f.input :city, :label_html  => {:class => 'left-label'}, :input_html  => {:class  => "input-medium"}
+        = f.input :state, :label => "State", :collection =>  [1,2,3], :input_html  => {:class  => "input-small"}, :label_html  => {:class => 'left-label'}
+        = f.input :zip_code, :input_html  => {:class  => "input-small"}, :label_html  => {:class => 'left-label'}
+      = link_to 'Save', '#', :class => 'b-orange-button b-button'
+      = link_to 'Edit', '#', :class => 'b-gray-button b-button'
+
+    %hr
+    #resources.profile-section
+      %h2.section-title
+        Designer resources
+      = link_to 'Latest blog post headline', "#"
+      = link_to 'Latest blog post headline', "#"
+      = link_to 'Latest blog post headline', "#"
+      = link_to 'Latest blog post headline', "#"

@@ -1,0 +1,24 @@
+#quiz-reveal
+  %h1 
+    Ready for the Big Reveal?
+  
+  .join-prompt
+    To view your results, 
+    = link_to 'login', '#sign-in', :class  => "quiz-show-modal" 
+    to your Roomations account or join us with your email address below:
+  = simple_form_for(:reveal, :as => :reveal, :url => :reveal_style_polls, :remote  => true, 
+  :html  => {:id => 'reveal-form', :class  => 'form-vertical'}) do |f|
+    .b-errors-wrap
+      #reveal-errors.b-error.alert.alert-error.hide
+    = f.input :name
+    = f.input :email
+    - style_poll = current_style_poll
+    - if style_poll and style_poll.style_quiz_result
+      = f.input :style_quiz, :as => :hidden, :input_html => { :value => style_poll.style_quiz_result.name }
+      = f.input :color_quiz, :as => :hidden, :input_html => { :value => style_poll.color_quiz_result.name }
+    = f.submit 'Join', :class => 'btn-primary submit'
+
+:javascript
+  $(function(){
+    $.style_quiz.initQuizReveal();
+  });

@@ -1,0 +1,48 @@
+.l-sign-up-panel.navbar
+  .b-sign-up-panel
+
+    .b-home-button.nav.pull-left
+      = link_to root_path do
+        .b-icon.b-icon-home
+
+    .b-tell-a-friend.nav.pull-left
+      #share-box
+
+    .b-sign-up-for-tips.nav.pull-left
+      = link_to '#sign-up-for-tips', 'data-toggle' => :modal do
+        .b-icon.b-mail-icon
+        %span Sign up for design tips, news & special offers
+
+    .l-search-bar.nav.pull-right
+      = render 'shared/search_bar'
+
+    .b-social-links.nav.pull-right
+      = link_to 'http://www.facebook.com/roomations', :class => 'b-button' do
+        .b-icon.b-social-icon
+          =image_tag asset_path('icons/facebook-grey.gif'), :class => 'grey'
+          =image_tag asset_path('icons/facebook.gif'), :class => 'color'
+      = link_to 'http://twitter.com/#!/roomations', :class => 'b-button' do
+        .b-icon.b-social-icon
+          =image_tag asset_path('icons/twitter-grey.gif'), :class => 'grey'
+          =image_tag asset_path('icons/twitter.gif'), :class => 'color'
+      = link_to 'http://pinterest.com/roomations/', :class => 'b-button' do
+        .b-icon.b-social-icon
+          =image_tag asset_path('icons/pintrest-grey.gif'), :class => 'grey'
+          =image_tag asset_path('icons/pintrest.gif'), :class => 'color'
+
+    .b-sign-links.nav.pull-right
+      = render 'layouts/account_menu'
+
+
+.l-menu-and-logo
+  .l-logo= link_to 'Roomations', root_path, :class => 'b-logo'
+  .l-menu-and-banner
+    .b-header-banner
+    = render 'shared/top_navigation'
+
+= render 'shared/facebook_connect'
+= render 'shared/discount_code'
+= render 'shared/sign_in_modal'
+= render 'shared/sign_up_modal'
+= render 'shared/sign_up_for_tips_modal'
+= render 'shared/contact_us_modal_result'

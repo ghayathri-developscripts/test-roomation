@@ -1,0 +1,11 @@
+.box#header-of-state
+  - current_step = current_visual_index
+  = header_for_state(current_step, 1, :level_of_guidance)
+  = header_for_state(current_step, 2, :style_assessment)
+  = header_for_state(current_step, 3, :my_room)
+  = header_for_state(current_step, 4, :choose_designer)
+  - if [:registration, :checkout].include?(@design_request.step_name) && !@step.eql?(@design_request.step_name)
+    = header_for_state(6, 5, :registration)
+  - else
+    = header_for_state(current_step, 5, :registration)
+  %div{:id => "step#{current_step}"}

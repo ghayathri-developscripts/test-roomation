@@ -1,0 +1,68 @@
+#pricing
+  %hr
+  %h1 Pricing
+  .right-block    
+    .box
+      #tell-me
+      %p We offer various levels of interaction between you and our designers. Choose which option works best for you:
+      .header Tell Me
+      %h1.title<
+        Design Advice -&nbsp;
+        %strike> $#{select_package_by_code('design-advice').price}/month
+        &nbsp;Free for a limited time!
+      %p Get the answer to that one burning interior design question that you just can't solve! Customers in the past have asked things like "what's the perfect couch for my room" or "help me find the right piece of artwork" or "help me choose paint!" A designer will share their expertise and answer your question via email.
+      =link_to 'Get Started', new_design_request_path(:level => :tell_me), :class => "b-orange-button b-start-project-button"
+
+    .divider
+      %hr
+
+    .box     
+      #tease-me
+      .header Guide Me
+      %h1.title
+        = "Style Board + 3 Months Advice - $#{select_package_by_code('one-board').price} and up"
+      %p A Roomations interior designer will create a one-page style board expressing a unique design concept for your space. If you choose two or three styleboards, you will receive different boards from different designers. Choose your favorite one and get a shopping list. Get 3 Months of design advice once your project kicks off!
+
+      %table.pricing-table{:cellspacing => 1}
+        %tr
+          = render 'package', :package  => select_package_by_code('one-board')
+        %tr 
+          = render 'package', :package  => select_package_by_code('two-boards')
+        %tr
+          = render 'package', :package  => select_package_by_code('three-boards')
+      %p.notation Each additional board will give you another unique style board for the same room.
+      = link_to 'Get Started', new_design_request_path(:level => :guide_me), :class => "b-orange-button b-start-project-button"
+
+    .divider
+      %hr
+
+    .box
+      #show-me
+      .header Amaze Me
+      %h1.title 
+        = "Room Vision + 3 Months Advice - $#{select_package_by_code('one-design').price} and up"
+      %p Having trouble picturing your finished space? Get a full design of your dream room! Choose the two or three style board / design package and experience the work of different designers!
+      %ul
+        %li First, interior designers will create unique styleboards for you to help you hone in on a look and feel for the room
+        %li Select the one styleboard you like
+        %li Then you'll get one custom photorealistic 3D design for your room
+
+        %li Get a shopping list to turn the room into reality
+        %li On top of that, you'll have 3 months of access to design advice!
+
+      %table.pricing-table{:cellspacing => 1, :style => "width:410px;"}
+        %tr       
+          = render 'package', :package  => select_package_by_code('one-design')
+        %tr
+          = render 'package', :package  => select_package_by_code('two-designs')
+        %tr
+          = render 'package', :package  => select_package_by_code('three-designs')
+      %p.notation Each additional design will give you another unique design option for the same room.
+      =link_to 'Get Started', new_design_request_path, :class => "b-orange-button b-start-project-button"
+
+    .divider
+      %hr
+
+    #downside_links.b-learn-more
+      =link_to 'Learn How it Works', how_it_works_path
+
